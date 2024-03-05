@@ -1,0 +1,12 @@
+.elementButton {
+  padding: 9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.elementButton:hover {
+  background-color: #202327;
+}
