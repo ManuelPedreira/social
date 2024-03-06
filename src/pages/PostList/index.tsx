@@ -1,38 +1,16 @@
-import { Post, User, RequestStatus } from "../../api/postTypes";
 import CompactPost from "../components/CompactPost";
 import "./styles.css";
-import { getAllPosts, getUsersByIds } from "../../api/postCalls";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorPlaceholder from "../../components/ErrorPlaceholder";
 import InputSearch from "../../components/InputSearch";
-import { includesInsensitive } from "./utils";
+import usePostsList from "../../api/usePostsList";
+import { useState } from "react";
+import { RequestStatus } from "../../api/postTypes";
+import { Link } from "react-router-dom";
 
 const PostList = () => {
-  const [usersData, setUsersData] = useState<User[]>();
-  const [postsData, setPostsData] = useState<Post[]>();
-  const [requestStatus, setRequestStatus] = useState<RequestStatus>(
-    RequestStatus.IDLE
-  );
   const [searchInput, setSearchInput] = useState<string>("");
-
-  useEffect(() => {
-    setRequestStatus(RequestStatus.LOADING);
-
-    getAllPosts()
-      .then((posts) => {
-        setPostsData(posts);
-        const userIds = posts.map(({ userId }) => userId);
-
-        return getUsersByIds(userIds);
-      })
-      .then((users) => {
-        setUsersData(users);
-        setRequestStatus(RequestStatus.OK);
-      })
-      .catch(() => setRequestStatus(RequestStatus.ERROR));
-  }, []);
+  const { postsData, usersData, requestStatus } = usePostsList(searchInput);
 
   if (
     requestStatus === RequestStatus.IDLE ||
@@ -54,21 +32,6 @@ const PostList = () => {
     );
   }
 
-  const filteredPosts =
-    postsData?.filter((postData) => {
-      const userData = usersData?.find(({ id }) => id === postData.userId);
-
-      const name = userData?.name || "";
-      const username = userData?.username || "";
-
-      //const { name, username } = userData ?? { name: "", username: "" };
-
-      const searchMatchesName = includesInsensitive(name, searchInput);
-      const searchMatchesUsername = includesInsensitive(username, searchInput);
-
-      return searchMatchesName || searchMatchesUsername;
-    }) || [];
-
   return (
     <div className="postList">
       <InputSearch
@@ -76,8 +39,8 @@ const PostList = () => {
         value={searchInput}
         onChange={({ target }) => setSearchInput(target.value)}
       />
-      {filteredPosts.map((postData) => {
-        const userData = usersData?.find(({ id }) => id === postData.userId);
+      {postsData.map((postData) => {
+        const userData = usersData.find(({ id }) => id === postData.userId);
         const { id, body } = postData;
 
         return (
