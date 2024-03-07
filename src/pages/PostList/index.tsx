@@ -2,15 +2,19 @@ import CompactPost from "../components/CompactPost";
 import "./styles.css";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorPlaceholder from "../../components/ErrorPlaceholder";
-import InputSearch from "../../components/InputSearch";
 import usePostsList from "../../api/usePostsList";
 import { useState } from "react";
-import { RequestStatus } from "../../api/postTypes";
+import { Pagination, RequestStatus } from "../../api/postTypes";
 import { Link } from "react-router-dom";
+import PostListHeader from "../components/PostListHeader";
 
 const PostList = () => {
   const [searchInput, setSearchInput] = useState<string>("");
-  const { postsData, usersData, requestStatus } = usePostsList(searchInput);
+  const [pagination, setPagination] = useState<Pagination>();
+  const { postsData, usersData, requestStatus } = usePostsList(
+    searchInput,
+    pagination
+  );
 
   if (
     requestStatus === RequestStatus.IDLE ||
@@ -34,10 +38,11 @@ const PostList = () => {
 
   return (
     <div className="postList">
-      <InputSearch
-        placeholder="Search"
-        value={searchInput}
-        onChange={({ target }) => setSearchInput(target.value)}
+      <PostListHeader
+        filter={searchInput}
+        onFilterChange={(filter) => setSearchInput(filter)}
+        pagination={pagination}
+        onPaginationChange={(paginationData) => setPagination(paginationData)}
       />
       {postsData.map((postData) => {
         const userData = usersData.find(({ id }) => id === postData.userId);

@@ -1,10 +1,16 @@
 import axios from "axios";
-import { Comment, Post, User } from "./postTypes";
+import { Comment, Pagination, Post, User } from "./postTypes";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 
 export const getAllPosts = () => {
-  return axios.get<Post[]>(`${BASE_URL}/posts`).then(({ data }) => data);
+  return getPaginatedPosts();
+};
+
+export const getPaginatedPosts = (pagination?: Pagination) => {
+  return axios
+    .get<Post[]>(`${BASE_URL}/posts`, { params: pagination })
+    .then(({ data }) => data);
 };
 
 export const getPostById = (postId: number) => {

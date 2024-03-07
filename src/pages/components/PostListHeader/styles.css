@@ -1,0 +1,9 @@
+.postListHeader {
+  display: flex;
+  margin: 1em;
+  gap: 1em;
+}
+
+.postListHeader .elementInput {
+  /* width: 100px; */
+}

@@ -1,0 +1,9 @@
+.pagesNavigator {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.pagesNavigator .paginationInput {
+  width: 50px;
+}

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { getAllPosts, getUsersByIds } from "./postCalls";
-import { Post, RequestStatus, User } from "./postTypes";
+import { getPaginatedPosts, getUsersByIds } from "./postCalls";
+import { Pagination, Post, RequestStatus, User } from "./postTypes";
 import { includesInsensitive } from "./utils";
 
 const usePostsList = (
-  filter: string
+  filter: string,
+  pagination?: Pagination
 ): { postsData: Post[]; usersData: User[]; requestStatus: RequestStatus } => {
   const [usersData, setUsersData] = useState<User[]>([]);
   const [postsData, setPostsData] = useState<Post[]>([]);
@@ -15,7 +16,7 @@ const usePostsList = (
   useEffect(() => {
     setRequestStatus(RequestStatus.LOADING);
 
-    getAllPosts()
+    getPaginatedPosts(pagination)
       .then((posts) => {
         setPostsData(posts);
         const userIds = posts.map(({ userId }) => userId);
@@ -27,7 +28,7 @@ const usePostsList = (
         setRequestStatus(RequestStatus.OK);
       })
       .catch(() => setRequestStatus(RequestStatus.ERROR));
-  }, []);
+  }, [pagination]);
 
   const filteredPosts =
     postsData.filter((postData) => {
