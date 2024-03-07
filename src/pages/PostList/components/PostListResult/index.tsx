@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { Post, RequestStatus, User } from "../../../api/postTypes";
-import ErrorPlaceholder from "../../../components/ErrorPlaceholder";
-import LoadingSpinner from "../../../components/LoadingSpinner";
+import { Post, RequestStatus, User } from "../../../../api/postTypes";
+import ErrorPlaceholder from "../../../../components/ErrorPlaceholder";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 import "./styles.css";
-import CompactPost from "../CompactPost";
+import CompactPost from "../../../../components/CompactPost";
 
 type PostListResultProps = {
   postsData: Post[];

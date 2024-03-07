@@ -1,6 +1,6 @@
 import "./styles.css";
-import ElementButton from "../../../components/ElementButton";
-import ArrorSVG, { Direction } from "../../../components/svg/ArrorSVG";
+import ElementButton from "../../../../components/ElementButton";
+import ArrorSVG, { Direction } from "../../../../components/svg/ArrorSVG";
 
 type DetailedPostHeaderProps = {
   onClick?: React.MouseEventHandler;

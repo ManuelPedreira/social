@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Comment, Post, RequestStatus, User } from "./postTypes";
-import { getCommentsByPostId, getPostById, getUserById } from "./postCalls";
+import { Comment, Post, RequestStatus, User } from "../postTypes";
+import { getCommentsByPostId, getPostById, getUserById } from "../postCalls";
 
 const usePostAndComments = (
   postId: number

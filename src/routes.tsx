@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import PostList from "./pages/PostList";
+import ErrorPage from "./components/ErrorPage";
 import PostDetail from "./pages/PostDetail";
-import ErrorPage from "./pages/components/ErrorPage";
 
 const routes: RouteObject[] = [
   {

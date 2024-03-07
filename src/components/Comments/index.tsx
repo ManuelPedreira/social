@@ -1,4 +1,4 @@
-import { Comment } from "../../../api/postTypes";
+import { Comment } from "../../api/postTypes";
 import CompactPost from "../CompactPost";
 import "./styles.css";
 

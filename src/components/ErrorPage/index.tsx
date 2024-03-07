@@ -1,4 +1,4 @@
-import ErrorPlaceholder from "../../../components/ErrorPlaceholder";
+import ErrorPlaceholder from "../ErrorPlaceholder";
 import "./styles.css";
 
 const ErrorPage = () => {

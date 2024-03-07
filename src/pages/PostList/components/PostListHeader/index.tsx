@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Pagination } from "../../../api/postTypes";
-import SearchInput from "../../../components/SearchInput";
-import PagesNavigator from "../PagesNavigator";
+import { Pagination } from "../../../../api/postTypes";
+import SearchInput from "../../../../components/SearchInput";
+import PagesNavigator from "../../../../components/PagesNavigator";
 import "./styles.css";
 
 type PostListHeaderProps = {

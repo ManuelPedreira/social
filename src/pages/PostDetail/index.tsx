@@ -1,12 +1,12 @@
-import "./styles.css";
 import { useNavigate, useParams } from "react-router-dom";
+import "./styles.css";
+import usePostAndComments from "../../api/hooks/usePostAndComments";
 import { RequestStatus } from "../../api/postTypes";
-import DetailedPost from "../components/DetailedPost";
-import Comments from "../components/Comments";
-import DetailedPostHeader from "../components/DetailedPostHeader";
+import DetailedPostHeader from "./components/DetailedPostHeader";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorPlaceholder from "../../components/ErrorPlaceholder";
-import usePostAndComments from "../../api/usePostAndComments";
+import DetailedPost from "./components/DetailedPost";
+import Comments from "../../components/Comments";
 
 const PostDetail = () => {
   const navigate = useNavigate();
