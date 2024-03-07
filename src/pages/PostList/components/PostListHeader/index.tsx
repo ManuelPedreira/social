@@ -20,7 +20,7 @@ const PostListHeader = ({
   const [visualizationMode, setVisualizationMode] =
     useState<postListHeaderMode>(postListHeaderMode.SEARCH);
 
-  const setModeVisualizatorModeLogic = (mode: postListHeaderMode) => {
+  const handleVisualizatorModeChange = (mode: postListHeaderMode) => {
     if (visualizationMode !== mode) {
       if (mode === postListHeaderMode.SEARCH) onPaginationChange({});
       else if (mode === postListHeaderMode.PAGINATION) onFilterChange("");
@@ -37,7 +37,7 @@ const PostListHeader = ({
         className="searchInput"
         value={filter}
         onChange={({ target }) => {
-          setModeVisualizatorModeLogic(postListHeaderMode.SEARCH);
+          handleVisualizatorModeChange(postListHeaderMode.SEARCH);
           onFilterChange(target.value);
         }}
       />
@@ -45,9 +45,9 @@ const PostListHeader = ({
         pagination={pagination}
         onPaginationChange={(paginationData) => {
           if (paginationData._limit) {
-            setModeVisualizatorModeLogic(postListHeaderMode.PAGINATION);
+            handleVisualizatorModeChange(postListHeaderMode.PAGINATION);
           } else {
-            setModeVisualizatorModeLogic(postListHeaderMode.SEARCH);
+            handleVisualizatorModeChange(postListHeaderMode.SEARCH);
           }
           onPaginationChange(paginationData);
         }}
