@@ -63,3 +63,10 @@ export enum RequestStatus {
   LOADING,
   ERROR,
 }
+
+export type Pagination = {
+  _page?: number;
+  _limit?: number;
+  _start?: number;
+  _end?: number;
+};
