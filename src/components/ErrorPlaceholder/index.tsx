@@ -1,13 +1,18 @@
-import "./styles.css";
+import {
+  ErrorPlaceholderContainer,
+  ErrorPlaceholderTitle,
+  IconContainer,
+  TextIcon,
+} from "./ErrorPlaceholder.styled";
 
 function ErrorPlaceholder() {
   return (
-    <div className="error">
-      <div className="icon">
-        <span>!</span>
-      </div>
-      <p>Error</p>
-    </div>
+    <ErrorPlaceholderContainer>
+      <IconContainer>
+        <TextIcon>!</TextIcon>
+      </IconContainer>
+      <ErrorPlaceholderTitle>Error</ErrorPlaceholderTitle>
+    </ErrorPlaceholderContainer>
   );
 }
 

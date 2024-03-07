@@ -1,9 +1,9 @@
 import "./styles.css";
-import usePostsList from "../../api/usePostsList";
+import usePostsList from "../../api/hooks/usePostsList";
 import { useState } from "react";
 import { Pagination } from "../../api/postTypes";
-import PostListHeader from "../components/PostListHeader";
-import PostListResult from "../components/PostListResult";
+import PostListHeader from "./components/PostListHeader";
+import PostListResult from "./components/PostListResult";
 
 const PostList = () => {
   const [searchInput, setSearchInput] = useState<string>("");

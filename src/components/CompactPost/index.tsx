@@ -1,4 +1,4 @@
-import ProfileIcon from "../../../components/ProfileIcon";
+import ProfileIcon from "../ProfileIcon";
 import "./styles.css";
 
 type PostProps = {

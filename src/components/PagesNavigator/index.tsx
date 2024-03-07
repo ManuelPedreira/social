@@ -1,8 +1,8 @@
-import ElementButton from "../../../components/ElementButton";
-import ElementInput from "../../../components/ElementInput";
-import ArrorSVG, { Direction } from "../../../components/svg/ArrorSVG";
+import ElementButton from "../ElementButton";
+import ElementInput from "../ElementInput";
+import ArrorSVG, { Direction } from "../svg/ArrorSVG";
 import "./styles.css";
-import { Pagination } from "../../../api/postTypes";
+import { Pagination } from "../../api/postTypes";
 import { useEffect, useState } from "react";
 
 type PagesNavigatorProps = {
