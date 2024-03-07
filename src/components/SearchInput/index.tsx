@@ -5,11 +5,22 @@ type SearchInputProps = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   value?: string;
+  className?: string;
 };
 
-const SearchInput = ({ onChange, placeholder, value }: SearchInputProps) => {
+const SearchInput = ({
+  onChange,
+  placeholder,
+  value,
+  className,
+}: SearchInputProps) => {
   return (
-    <ElementInput onChange={onChange} placeholder={placeholder} value={value}>
+    <ElementInput
+      onChange={onChange}
+      placeholder={placeholder}
+      value={value}
+      className={className}
+    >
       <SearchIconSVG />
     </ElementInput>
   );

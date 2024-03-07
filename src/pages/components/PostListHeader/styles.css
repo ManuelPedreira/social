@@ -4,6 +4,17 @@
   gap: 1em;
 }
 
-.postListHeader .elementInput {
-  /* width: 100px; */
+.postListHeader .searchInput {
+  flex-grow: 1;
 }
+
+.postListHeader.search .pagesNavigator {
+  flex-shrink: 1;
+  width: 3.1em;
+  overflow: hidden;
+}
+
+/* .postListHeader.pagination {
+}
+.postListHeader .elementInput {
+} */
