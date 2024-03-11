@@ -25,6 +25,6 @@ export const TextIcon = styled(Text)`
   top: 12px;
 `;
 
-export const ErrorPlaceholderTitle = styled(Text)`
+export const ErrorTitle = styled(Text)`
   margin: 20px 0;
 `;

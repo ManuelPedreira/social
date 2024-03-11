@@ -1,12 +1,12 @@
 import {
   LoadingSpinnerPlaceholderContainer,
-  SpinnerSVGContainer,
+  StyledSpinner,
 } from "./LoadingSpinnerPlaceholder.styled";
 
 function LoadingSpinner() {
   return (
     <LoadingSpinnerPlaceholderContainer>
-      <SpinnerSVGContainer />
+      <StyledSpinner />
     </LoadingSpinnerPlaceholderContainer>
   );
 }

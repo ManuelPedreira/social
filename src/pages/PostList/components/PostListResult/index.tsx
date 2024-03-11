@@ -4,7 +4,7 @@ import ErrorPlaceholder from "../../../../components/ErrorPlaceholder";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
 import {
   CenterElementContainer,
-  CompactPostContainer,
+  StyledCompactPost,
 } from "./PostListResultPlaceholder.styled";
 
 type PostListResultProps = {
@@ -44,7 +44,7 @@ const PostListResult = ({
 
     return (
       <Link key={id} to={`post/${id}`} relative="path">
-        <CompactPostContainer
+        <StyledCompactPost
           account={`@${userData?.username}`}
           name={userData?.name || ""}
           text={body}

@@ -2,7 +2,7 @@ import ElementButton from "../../../../components/ElementButton";
 import ArrorSVG, { Direction } from "../../../../components/svg/ArrorSVG";
 import {
   DetailedPostHeaderPlaceholderContainer,
-  HeaderTextContainer,
+  HeaderText,
 } from "./DetailedPostHeaderPlaceholder.styled";
 
 type DetailedPostHeaderProps = {
@@ -15,7 +15,7 @@ const DetailedPostHeader = ({ onClick }: DetailedPostHeaderProps) => {
       <ElementButton onClick={onClick}>
         <ArrorSVG direction={Direction.LEFT} />
       </ElementButton>
-      <HeaderTextContainer>Post</HeaderTextContainer>
+      <HeaderText>Post</HeaderText>
     </DetailedPostHeaderPlaceholderContainer>
   );
 };

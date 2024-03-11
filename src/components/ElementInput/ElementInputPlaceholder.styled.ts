@@ -15,7 +15,7 @@ export const ElementInputPlaceholderContainer = styled.label`
   }
 `;
 
-export const InputContainer = styled.input`
+export const StyledInput = styled.input`
   border: 0;
   outline: 0;
   background-color: transparent;

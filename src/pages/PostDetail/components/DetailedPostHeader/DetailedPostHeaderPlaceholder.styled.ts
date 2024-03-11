@@ -7,7 +7,7 @@ export const DetailedPostHeaderPlaceholderContainer = styled.div`
   padding: 0.5em 0.7em;
 `;
 
-export const HeaderTextContainer = styled.span`
+export const HeaderText = styled.span`
   color: #e7e9ea;
   font-weight: 700;
   font-size: 20px;

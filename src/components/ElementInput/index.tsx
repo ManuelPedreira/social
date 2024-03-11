@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import {
   ElementInputPlaceholderContainer,
-  InputContainer,
+  StyledInput,
 } from "./ElementInputPlaceholder.styled";
 
 type ElementInputProps = {
@@ -22,19 +22,13 @@ const ElementInput = ({
   return (
     <ElementInputPlaceholderContainer className={className}>
       {children}
-      <InputContainer
+      <StyledInput
         onChange={onChange}
         placeholder={placeholder}
         value={value}
       />
     </ElementInputPlaceholderContainer>
   );
-  /* return (
-    <label className={`elementInput ${className}`}>
-      {children}
-      <input onChange={onChange} placeholder={placeholder} value={value} />
-    </label>
-  ); */
 };
 
 export default ElementInput;

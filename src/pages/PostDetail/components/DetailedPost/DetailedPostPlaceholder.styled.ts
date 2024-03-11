@@ -15,7 +15,7 @@ export const HeaderContainer = styled.div`
   gap: 0.5em;
 `;
 
-export const ProfileIconContainer = styled(ProfileIcon)`
+export const StyledProfileIcon = styled(ProfileIcon)`
   width: 40px;
   height: 40px;
   border-radius: 20px;
@@ -28,11 +28,11 @@ export const UserContainer = styled.div`
   padding-bottom: 2px;
 `;
 
-export const UserNameContainer = styled.span`
+export const UserName = styled.span`
   font-weight: 700;
 `;
 
-export const UserAccountContainer = styled.span`
+export const UserAccount = styled.span`
   color: #71767b;
 `;
 

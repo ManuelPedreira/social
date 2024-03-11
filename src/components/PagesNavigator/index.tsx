@@ -19,7 +19,7 @@ const PagesNavigator = ({
 
       return {
         ...currentValue,
-        _page: newPage && newPage > 0 ? newPage : 1,
+        _page: newPage > 0 ? newPage : 1,
       };
     });
   };
@@ -38,7 +38,8 @@ const PagesNavigator = ({
 
   const setNextLimit = () => {
     switch (pagination._limit) {
-      case 0 || undefined:
+      case undefined:
+      case 0:
         setLimit(5);
         break;
       case 5:

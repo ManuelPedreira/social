@@ -1,7 +1,7 @@
 import { Comment } from "../../api/postTypes";
 import {
   CommentsPlaceholderContainer,
-  CompactPostContainer,
+  StyledCompactPost,
 } from "./CommentsPlaceholder.styled";
 
 const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
@@ -17,7 +17,7 @@ const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
         const account = formatText(String(username).split(".")[0]);
 
         return (
-          <CompactPostContainer
+          <StyledCompactPost
             key={id}
             account={`@${account}`}
             name={name}

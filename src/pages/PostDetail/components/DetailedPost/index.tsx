@@ -2,10 +2,10 @@ import {
   BodyContainer,
   DetailedPlaceholderContainer,
   HeaderContainer,
-  ProfileIconContainer,
-  UserAccountContainer,
+  StyledProfileIcon,
+  UserAccount,
   UserContainer,
-  UserNameContainer,
+  UserName,
 } from "./DetailedPostPlaceholder.styled";
 
 type PostProps = {
@@ -23,10 +23,10 @@ const DetailedPost = ({ icon, name, account, text }: PostProps) => {
   return (
     <DetailedPlaceholderContainer>
       <HeaderContainer>
-        <ProfileIconContainer imageSrc={icon} colorByText={name} />
+        <StyledProfileIcon imageSrc={icon} colorByText={name} />
         <UserContainer>
-          <UserNameContainer>{name}</UserNameContainer>
-          <UserAccountContainer>{account}</UserAccountContainer>
+          <UserName>{name}</UserName>
+          <UserAccount>{account}</UserAccount>
         </UserContainer>
       </HeaderContainer>
       <BodyContainer>{formatText(text)}</BodyContainer>

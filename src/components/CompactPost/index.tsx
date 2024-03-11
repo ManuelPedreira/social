@@ -1,9 +1,9 @@
 import {
   CompactPostPlaceholderContainer,
-  ProfileIconContainer,
-  UserAccountContainer,
+  StyledProfileIcon,
+  UserAccount,
   UserContainer,
-  UserNameContainer,
+  UserName,
 } from "./CompactPostPlaceholder.styled";
 
 type PostProps = {
@@ -21,11 +21,11 @@ const formatText = (text: string): string => {
 const CompactPost = ({ icon, name, account, text, className }: PostProps) => {
   return (
     <CompactPostPlaceholderContainer className={className}>
-      <ProfileIconContainer imageSrc={icon} colorByText={name} />
+      <StyledProfileIcon imageSrc={icon} colorByText={name} />
       <div>
         <UserContainer>
-          <UserNameContainer>{name}</UserNameContainer>
-          <UserAccountContainer>{account}</UserAccountContainer>
+          <UserName>{name}</UserName>
+          <UserAccount>{account}</UserAccount>
         </UserContainer>
         <span>{formatText(text)}</span>
       </div>

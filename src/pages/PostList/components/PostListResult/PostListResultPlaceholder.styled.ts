@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CompactPost from "../../../../components/CompactPost";
 
-export const CompactPostContainer = styled(CompactPost)`
+export const StyledCompactPost = styled(CompactPost)`
   padding: 1em 1em 1.2em 1em;
   transition: all 0.3s;
   outline: 1px solid #2f3336;
