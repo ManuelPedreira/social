@@ -1,3 +1,4 @@
+import { ElementButtonPlaceholderContainer } from "./ElementButtonPlaceholder.styled";
 import "./styles.css";
 
 type ElementButtonProps = {
@@ -14,12 +15,12 @@ const ElementButton = ({
   className = "",
 }: ElementButtonProps) => {
   return (
-    <div
+    <ElementButtonPlaceholderContainer
       onClick={!disabled ? onClick : undefined}
       className={`elementButton ${className} ${disabled ? "disabled" : ""}`}
     >
       {children}
-    </div>
+    </ElementButtonPlaceholderContainer>
   );
 };
 

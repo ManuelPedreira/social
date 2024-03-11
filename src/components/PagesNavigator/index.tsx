@@ -1,45 +1,44 @@
-import ElementButton from "../ElementButton";
 import ElementInput from "../ElementInput";
 import ArrorSVG, { Direction } from "../svg/ArrorSVG";
 import "./styles.css";
 import { Pagination } from "../../api/postTypes";
-import { useEffect, useState } from "react";
+import ElementButton from "../ElementButton";
 
 type PagesNavigatorProps = {
   pagination: Pagination;
-  onPaginationChange: (pagination: Pagination) => void;
+  setPagination: React.Dispatch<React.SetStateAction<Pagination>>;
 };
 
 const PagesNavigator = ({
   pagination,
-  onPaginationChange,
+  setPagination: setPagination,
 }: PagesNavigatorProps) => {
-  const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(0);
+  const setPage = (newPage: number) => {
+    setPagination((currentValue) => {
+      if (!currentValue._limit) return {};
 
-  useEffect(() => {
-    if (limit) {
-      if (pagination._page !== page || pagination._limit !== limit) {
-        onPaginationChange({
-          _page: page,
-          _limit: limit,
-        });
-      }
-    } else if (pagination._limit) {
-      onPaginationChange({});
-    }
-  }, [page, limit]);
+      return {
+        ...currentValue,
+        _page: newPage && newPage > 0 ? newPage : 1,
+      };
+    });
+  };
 
-  useEffect(() => {
-    if (pagination._page !== page || pagination._limit !== limit) {
-      setPage(pagination._page ? pagination._page : 1);
-      setLimit(pagination._limit ? pagination._limit : 0);
-    }
-  }, [pagination]);
+  const setLimit = (newLimit?: number) => {
+    setPagination((currentValue) => {
+      if (!newLimit) return {};
+
+      return {
+        ...currentValue,
+        _page: currentValue._page ? currentValue._page : 1,
+        _limit: newLimit,
+      };
+    });
+  };
 
   const setNextLimit = () => {
-    switch (limit) {
-      case 0:
+    switch (pagination._limit) {
+      case 0 || undefined:
         setLimit(5);
         break;
       case 5:
@@ -61,30 +60,29 @@ const PagesNavigator = ({
     <div className="pagesNavigator">
       <ElementButton
         onClick={() => {
-          setPage((currentValue) =>
-            currentValue && currentValue > 1 ? currentValue - 1 : 1
-          );
+          setPage(pagination._page ? pagination._page - 1 : 1);
         }}
-        disabled={!limit || page <= 1}
+        disabled={
+          !pagination._limit || !pagination._page || pagination._page <= 1
+        }
       >
         <ArrorSVG direction={Direction.LEFT} />
       </ElementButton>
       <ElementInput
         className="paginationInput"
-        value={limit ? String(page || "") : ""}
-        placeholder="1"
+        value={pagination._limit ? String(pagination._page || "") : ""}
         onChange={({ target }) => setPage(Number(target.value))}
       />
       <ElementButton
         onClick={() => {
-          setPage((currentValue) => (currentValue ? currentValue + 1 : 1));
+          setPage(pagination._page ? pagination._page + 1 : 1);
         }}
-        disabled={!limit}
+        disabled={!pagination._limit}
       >
         <ArrorSVG direction={Direction.RIGHT} />
       </ElementButton>
       <ElementButton onClick={setNextLimit}>
-        <span>{limit ? limit : "All"}</span>
+        <span>{pagination._limit ? pagination._limit : "All"}</span>
       </ElementButton>
     </div>
   );

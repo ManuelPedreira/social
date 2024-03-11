@@ -1,6 +1,8 @@
 import { Comment } from "../../api/postTypes";
-import CompactPost from "../CompactPost";
-import "./styles.css";
+import {
+  CommentsPlaceholderContainer,
+  CompactPostContainer,
+} from "./CommentsPlaceholder.styled";
 
 const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
   const formatText = (text?: string): string => {
@@ -8,14 +10,14 @@ const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
   };
 
   return (
-    <div className="comments">
+    <CommentsPlaceholderContainer>
       {commentsData.map((commentData) => {
         const { id, body, email } = commentData;
         const [name, username] = String(email).split("@");
         const account = formatText(String(username).split(".")[0]);
 
         return (
-          <CompactPost
+          <CompactPostContainer
             key={id}
             account={`@${account}`}
             name={name}
@@ -23,7 +25,7 @@ const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
           />
         );
       })}
-    </div>
+    </CommentsPlaceholderContainer>
   );
 };
 

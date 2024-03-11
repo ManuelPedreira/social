@@ -1,5 +1,5 @@
 import ElementInput from "../ElementInput";
-import SearchIconSVG from "../svg/SearchIconSVG";
+import { SearchIconSVGContainer } from "./SearchInputPlaceholder.styled";
 
 type SearchInputProps = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -21,7 +21,7 @@ const SearchInput = ({
       value={value}
       className={className}
     >
-      <SearchIconSVG />
+      <SearchIconSVGContainer />
     </ElementInput>
   );
 };

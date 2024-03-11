@@ -1,5 +1,8 @@
 import { ReactNode } from "react";
-import "./styles.css";
+import {
+  ElementInputPlaceholderContainer,
+  InputContainer,
+} from "./ElementInputPlaceholder.styled";
 
 type ElementInputProps = {
   children?: ReactNode;
@@ -17,11 +20,21 @@ const ElementInput = ({
   className = "",
 }: ElementInputProps) => {
   return (
+    <ElementInputPlaceholderContainer className={className}>
+      {children}
+      <InputContainer
+        onChange={onChange}
+        placeholder={placeholder}
+        value={value}
+      />
+    </ElementInputPlaceholderContainer>
+  );
+  /* return (
     <label className={`elementInput ${className}`}>
       {children}
       <input onChange={onChange} placeholder={placeholder} value={value} />
     </label>
-  );
+  ); */
 };
 
 export default ElementInput;

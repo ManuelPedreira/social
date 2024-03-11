@@ -1,12 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
-import "./styles.css";
 import usePostAndComments from "../../api/hooks/usePostAndComments";
 import { RequestStatus } from "../../api/postTypes";
 import DetailedPostHeader from "./components/DetailedPostHeader";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorPlaceholder from "../../components/ErrorPlaceholder";
-import DetailedPost from "./components/DetailedPost";
+import {
+  CenterElementContainer,
+  PostDetailedPlaceholderContainer,
+} from "./PostDetailPlaceholder.styled";
 import Comments from "../../components/Comments";
+import DetailedPost from "./components/DetailedPost";
 
 const PostDetail = () => {
   const navigate = useNavigate();
@@ -19,24 +22,28 @@ const PostDetail = () => {
     overallRequestStatus.includes(RequestStatus.LOADING)
   ) {
     return (
-      <div className="postDetail">
+      <PostDetailedPlaceholderContainer>
         <DetailedPostHeader onClick={() => navigate("/")} />
-        <LoadingSpinner />
-      </div>
+        <CenterElementContainer>
+          <LoadingSpinner />
+        </CenterElementContainer>
+      </PostDetailedPlaceholderContainer>
     );
   }
 
   if (overallRequestStatus.includes(RequestStatus.ERROR)) {
     return (
-      <div className="postDetail">
+      <PostDetailedPlaceholderContainer>
         <DetailedPostHeader onClick={() => navigate("/")} />
-        <ErrorPlaceholder />{" "}
-      </div>
+        <CenterElementContainer>
+          <ErrorPlaceholder />{" "}
+        </CenterElementContainer>
+      </PostDetailedPlaceholderContainer>
     );
   }
 
   return (
-    <div className="postDetail">
+    <PostDetailedPlaceholderContainer>
       <DetailedPostHeader onClick={() => navigate("/")} />
       <DetailedPost
         account={`@${userData?.username}`}
@@ -44,7 +51,7 @@ const PostDetail = () => {
         text={postData?.body || ""}
       />
       <Comments commentsData={commentsData} />
-    </div>
+    </PostDetailedPlaceholderContainer>
   );
 };
 

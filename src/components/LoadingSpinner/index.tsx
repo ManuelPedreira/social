@@ -1,11 +1,13 @@
-import SpinerSVG from "../svg/SpinnerSVG";
-import "./styles.css";
+import {
+  LoadingSpinnerPlaceholderContainer,
+  SpinnerSVGContainer,
+} from "./LoadingSpinnerPlaceholder.styled";
 
 function LoadingSpinner() {
   return (
-    <div className="loading">
-      <SpinerSVG />
-    </div>
+    <LoadingSpinnerPlaceholderContainer>
+      <SpinnerSVGContainer />
+    </LoadingSpinnerPlaceholderContainer>
   );
 }
 
