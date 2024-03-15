@@ -1,6 +1,9 @@
-import "./styles.css";
-import ElementButton from "../../../../components/ElementButton";
-import ArrorSVG, { Direction } from "../../../../components/svg/ArrorSVG";
+import Button from "../../../../components/Button";
+import ArrorSVG from "../../../../components/svg/ArrorSVG";
+import {
+  DetailedPostHeaderContainer,
+  HeaderText,
+} from "./DetailedPostHeader.styled";
 
 type DetailedPostHeaderProps = {
   onClick?: React.MouseEventHandler;
@@ -8,12 +11,12 @@ type DetailedPostHeaderProps = {
 
 const DetailedPostHeader = ({ onClick }: DetailedPostHeaderProps) => {
   return (
-    <div className="postHeader">
-      <ElementButton onClick={onClick}>
-        <ArrorSVG direction={Direction.LEFT} />
-      </ElementButton>
-      <span className="postHeaderText">Post</span>
-    </div>
+    <DetailedPostHeaderContainer>
+      <Button onClick={onClick}>
+        <ArrorSVG direction="left" />
+      </Button>
+      <HeaderText>Post</HeaderText>
+    </DetailedPostHeaderContainer>
   );
 };
 

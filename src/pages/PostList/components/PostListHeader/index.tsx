@@ -1,64 +1,50 @@
-import { useState } from "react";
 import { Pagination } from "../../../../api/postTypes";
-import SearchInput from "../../../../components/SearchInput";
-import PagesNavigator from "../../../../components/PagesNavigator";
-import "./styles.css";
+import {
+  PostListHeaderContainer,
+  StyledPaginationNavigator,
+  StyledSearchInput,
+} from "./PostListHeader.styled";
 
 type PostListHeaderProps = {
   filter: string;
-  onFilterChange: (value: string) => void;
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
   pagination: Pagination;
-  onPaginationChange: (pagination: Pagination) => void;
+  setPagination: React.Dispatch<React.SetStateAction<Pagination>>;
 };
 
 const PostListHeader = ({
-  filter = "",
-  onFilterChange,
+  filter,
+  setFilter,
   pagination,
-  onPaginationChange,
+  setPagination,
 }: PostListHeaderProps) => {
-  const [visualizationMode, setVisualizationMode] =
-    useState<postListHeaderMode>(postListHeaderMode.SEARCH);
-
-  const handleVisualizatorModeChange = (mode: postListHeaderMode) => {
-    if (visualizationMode !== mode) {
-      if (mode === postListHeaderMode.SEARCH) onPaginationChange({});
-      else if (mode === postListHeaderMode.PAGINATION) onFilterChange("");
-
-      console.log(mode);
-      setVisualizationMode(mode);
-    }
+  const getVisualizationMode = () => {
+    if (pagination._limit) return PostListHeaderMode.PAGINATION;
+    return PostListHeaderMode.SEARCH;
   };
 
   return (
-    <div className={`postListHeader ${visualizationMode}`}>
-      <SearchInput
+    <PostListHeaderContainer>
+      <StyledSearchInput
         placeholder="Search"
-        className="searchInput"
         value={filter}
         onChange={({ target }) => {
-          handleVisualizatorModeChange(postListHeaderMode.SEARCH);
-          onFilterChange(target.value);
+          if (pagination._limit) setPagination({});
+          setFilter(target.value);
         }}
       />
-      <PagesNavigator
+      <StyledPaginationNavigator
+        visualizationMode={getVisualizationMode()}
         pagination={pagination}
-        onPaginationChange={(paginationData) => {
-          if (paginationData._limit) {
-            handleVisualizatorModeChange(postListHeaderMode.PAGINATION);
-          } else {
-            handleVisualizatorModeChange(postListHeaderMode.SEARCH);
-          }
-          onPaginationChange(paginationData);
-        }}
+        setPagination={setPagination}
       />
-    </div>
+    </PostListHeaderContainer>
   );
 };
 
 export default PostListHeader;
 
-export const enum postListHeaderMode {
+export const enum PostListHeaderMode {
   SEARCH = "search",
   PAGINATION = "pagination",
 }

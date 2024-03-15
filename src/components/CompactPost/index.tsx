@@ -1,29 +1,35 @@
-import ProfileIcon from "../ProfileIcon";
-import "./styles.css";
+import {
+  CompactPostContainer,
+  StyledProfileIcon,
+  UserAccount,
+  UserContainer,
+  UserName,
+} from "./CompactPost.styled";
 
 type PostProps = {
   icon?: string;
   name: string;
   account: string;
   text: string;
+  className?: string;
 };
 
 const formatText = (text: string): string => {
   return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
 };
 
-const CompactPost = ({ icon, name, account, text }: PostProps) => {
+const CompactPost = ({ icon, name, account, text, className }: PostProps) => {
   return (
-    <div className="compactPost">
-      <ProfileIcon className="icon" imageSrc={icon} colorByText={name} />
+    <CompactPostContainer className={className}>
+      <StyledProfileIcon imageSrc={icon} colorByText={name} />
       <div>
-        <div className="user">
-          <span className="userName">{name}</span>
-          <span className="userAccount">{account}</span>
-        </div>
-        <span className="body">{formatText(text)}</span>
+        <UserContainer>
+          <UserName>{name}</UserName>
+          <UserAccount>{account}</UserAccount>
+        </UserContainer>
+        <span>{formatText(text)}</span>
       </div>
-    </div>
+    </CompactPostContainer>
   );
 };
 

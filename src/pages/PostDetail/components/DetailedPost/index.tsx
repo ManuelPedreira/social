@@ -1,5 +1,12 @@
-import ProfileIcon from "../../../../components/ProfileIcon";
-import "./styles.css";
+import {
+  BodyContainer,
+  DetailedPostContainer,
+  HeaderContainer,
+  StyledProfileIcon,
+  UserAccount,
+  UserContainer,
+  UserName,
+} from "./DetailedPost.styled";
 
 type PostProps = {
   icon?: string;
@@ -14,16 +21,16 @@ const formatText = (text: string): string => {
 
 const DetailedPost = ({ icon, name, account, text }: PostProps) => {
   return (
-    <div className="detailedPost">
-      <div className="header">
-        <ProfileIcon className="icon" imageSrc={icon} colorByText={name} />
-        <div className="user">
-          <span className="userName">{name}</span>
-          <span className="userAccount">{account}</span>
-        </div>
-      </div>
-      <span className="body">{formatText(text)}</span>
-    </div>
+    <DetailedPostContainer>
+      <HeaderContainer>
+        <StyledProfileIcon imageSrc={icon} colorByText={name} />
+        <UserContainer>
+          <UserName>{name}</UserName>
+          <UserAccount>{account}</UserAccount>
+        </UserContainer>
+      </HeaderContainer>
+      <BodyContainer>{formatText(text)}</BodyContainer>
+    </DetailedPostContainer>
   );
 };
 

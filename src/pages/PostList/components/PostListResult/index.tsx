@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { Post, RequestStatus, User } from "../../../../api/postTypes";
 import ErrorPlaceholder from "../../../../components/ErrorPlaceholder";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
-import "./styles.css";
-import CompactPost from "../../../../components/CompactPost";
+import {
+  CenterElementContainer,
+  StyledCompactPost,
+} from "./PostListResult.styled";
 
 type PostListResultProps = {
   postsData: Post[];
@@ -21,11 +23,19 @@ const PostListResult = ({
     requestStatus === RequestStatus.LOADING
   ) {
     //if ([RequestStatus.IDLE, RequestStatus.LOADING].includes(requestStatus)) {
-    return <LoadingSpinner />;
+    return (
+      <CenterElementContainer>
+        <LoadingSpinner />
+      </CenterElementContainer>
+    );
   }
 
   if (requestStatus === RequestStatus.ERROR) {
-    return <ErrorPlaceholder />;
+    return (
+      <CenterElementContainer>
+        <ErrorPlaceholder />
+      </CenterElementContainer>
+    );
   }
 
   return postsData.map((postData) => {
@@ -34,7 +44,7 @@ const PostListResult = ({
 
     return (
       <Link key={id} to={`post/${id}`} relative="path">
-        <CompactPost
+        <StyledCompactPost
           account={`@${userData?.username}`}
           name={userData?.name || ""}
           text={body}

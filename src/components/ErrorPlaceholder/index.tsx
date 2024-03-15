@@ -1,6 +1,6 @@
 import {
   ErrorPlaceholderContainer,
-  ErrorPlaceholderTitle,
+  ErrorTitle,
   IconContainer,
   TextIcon,
 } from "./ErrorPlaceholder.styled";
@@ -11,7 +11,7 @@ function ErrorPlaceholder() {
       <IconContainer>
         <TextIcon>!</TextIcon>
       </IconContainer>
-      <ErrorPlaceholderTitle>Error</ErrorPlaceholderTitle>
+      <ErrorTitle>Error</ErrorTitle>
     </ErrorPlaceholderContainer>
   );
 }

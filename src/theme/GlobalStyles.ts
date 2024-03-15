@@ -1,4 +1,23 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyles = createGlobalStyle`
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+* {
+  color: #fff;
+  line-height: 20px;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  background-color: #000;
+}
+
 :root {
+  /* = cabecera html */
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,3 +84,6 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+`;
+
+export default GlobalStyles;

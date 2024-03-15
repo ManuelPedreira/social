@@ -1,4 +1,6 @@
-.elementInput {
+import styled from "styled-components";
+
+export const InputContainer = styled.label`
   display: flex;
   gap: 1em;
   background-color: #202327;
@@ -7,24 +9,15 @@
   border-radius: 2em;
   outline: 1px solid #202327;
   transition: all 0.1s;
-}
 
-.elementInput input {
+  &:focus-within {
+    outline: 1px solid #1d9bf0;
+  }
+`;
+
+export const StyledInput = styled.input`
   border: 0;
   outline: 0;
   background-color: transparent;
   width: 100%;
-}
-
-.elementInput * {
-  width: 1.2em;
-  flex-shrink: 0;
-  background-color: transparent;
-}
-
-.elementInput:focus-within {
-  outline: 1px solid #1d9bf0;
-}
-.elementInput:focus-within * {
-  fill: #1d9bf0;
-}
+`;

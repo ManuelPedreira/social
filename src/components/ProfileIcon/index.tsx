@@ -1,4 +1,4 @@
-import { stringToColorHexa } from "../../api/utils";
+import { stringToColorHexa } from "../../utils";
 import ProfileIconSVG from "../svg/ProfileIconSVG";
 
 type ProfileIconProps = {

@@ -1,26 +1,27 @@
-import "./styles.css";
+import { StyledButton } from "./Button.styled";
 
-type ElementButtonProps = {
+type ButtonProps = {
   children: React.ReactNode;
   onClick?: React.MouseEventHandler;
   disabled?: boolean;
   className?: string;
 };
 
-const ElementButton = ({
+const Button = ({
   children,
   onClick,
   disabled,
   className = "",
-}: ElementButtonProps) => {
+}: ButtonProps) => {
   return (
-    <div
+    <StyledButton
       onClick={!disabled ? onClick : undefined}
-      className={`elementButton ${className} ${disabled ? "disabled" : ""}`}
+      className={className}
+      disabled={disabled}
     >
       {children}
-    </div>
+    </StyledButton>
   );
 };
 
-export default ElementButton;
+export default Button;
