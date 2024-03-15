@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PostListPlaceholderContainer = styled.div`
+export const PostListContainer = styled.div`
   display: flex;
   flex-flow: column;
   width: 600px;

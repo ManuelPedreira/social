@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPaginatedPosts, getUsersByIds } from "../postCalls";
 import { Pagination, Post, RequestStatus, User } from "../postTypes";
-import { includesInsensitive } from "../utils";
+import { includesInsensitive } from "../../utils";
 
 const usePostsList = (
   filter: string,

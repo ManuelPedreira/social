@@ -1,5 +1,4 @@
-import ElementInput from "../ElementInput";
-import { StyledSearchIcon } from "./SearchInputPlaceholder.styled";
+import { StyledInput, StyledSearchIcon } from "./SearchInput.styled";
 
 type SearchInputProps = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -15,14 +14,14 @@ const SearchInput = ({
   className,
 }: SearchInputProps) => {
   return (
-    <ElementInput
+    <StyledInput
       onChange={onChange}
       placeholder={placeholder}
       value={value}
       className={className}
     >
       <StyledSearchIcon />
-    </ElementInput>
+    </StyledInput>
   );
 };
 

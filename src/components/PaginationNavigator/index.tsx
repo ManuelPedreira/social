@@ -1,17 +1,21 @@
-import ElementInput from "../ElementInput";
-import ArrorSVG, { Direction } from "../svg/ArrorSVG";
-import "./styles.css";
+import ArrorSVG from "../svg/ArrorSVG";
 import { Pagination } from "../../api/postTypes";
-import ElementButton from "../ElementButton";
+import {
+  PaginationNavigatorContainer,
+  StyledButton,
+  StyledInput,
+} from "./PaginationNavigator.styled";
 
 type PagesNavigatorProps = {
   pagination: Pagination;
   setPagination: React.Dispatch<React.SetStateAction<Pagination>>;
+  className?: string;
 };
 
-const PagesNavigator = ({
+const PaginationNavigator = ({
   pagination,
-  setPagination: setPagination,
+  setPagination,
+  className,
 }: PagesNavigatorProps) => {
   const setPage = (newPage: number) => {
     setPagination((currentValue) => {
@@ -58,8 +62,8 @@ const PagesNavigator = ({
   };
 
   return (
-    <div className="pagesNavigator">
-      <ElementButton
+    <PaginationNavigatorContainer className={className}>
+      <StyledButton
         onClick={() => {
           setPage(pagination._page ? pagination._page - 1 : 1);
         }}
@@ -67,26 +71,25 @@ const PagesNavigator = ({
           !pagination._limit || !pagination._page || pagination._page <= 1
         }
       >
-        <ArrorSVG direction={Direction.LEFT} />
-      </ElementButton>
-      <ElementInput
-        className="paginationInput"
+        <ArrorSVG direction="left" />
+      </StyledButton>
+      <StyledInput
         value={pagination._limit ? String(pagination._page || "") : ""}
         onChange={({ target }) => setPage(Number(target.value))}
       />
-      <ElementButton
+      <StyledButton
         onClick={() => {
           setPage(pagination._page ? pagination._page + 1 : 1);
         }}
         disabled={!pagination._limit}
       >
-        <ArrorSVG direction={Direction.RIGHT} />
-      </ElementButton>
-      <ElementButton onClick={setNextLimit}>
+        <ArrorSVG direction="right" />
+      </StyledButton>
+      <StyledButton onClick={setNextLimit}>
         <span>{pagination._limit ? pagination._limit : "All"}</span>
-      </ElementButton>
-    </div>
+      </StyledButton>
+    </PaginationNavigatorContainer>
   );
 };
 
-export default PagesNavigator;
+export default PaginationNavigator;

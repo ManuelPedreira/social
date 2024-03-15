@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import SpinerSVG from "../svg/SpinnerSVG";
 
-export const LoadingSpinnerPlaceholderContainer = styled.div`
+export const LoadingSpinnerContainer = styled.div`
   margin: auto;
 `;
 

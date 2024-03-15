@@ -1,13 +1,13 @@
 import {
-  LoadingSpinnerPlaceholderContainer,
+  LoadingSpinnerContainer,
   StyledSpinner,
-} from "./LoadingSpinnerPlaceholder.styled";
+} from "./LoadingSpinner.styled";
 
 function LoadingSpinner() {
   return (
-    <LoadingSpinnerPlaceholderContainer>
+    <LoadingSpinnerContainer>
       <StyledSpinner />
-    </LoadingSpinnerPlaceholderContainer>
+    </LoadingSpinnerContainer>
   );
 }
 

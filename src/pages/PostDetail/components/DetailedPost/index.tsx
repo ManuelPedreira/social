@@ -1,12 +1,12 @@
 import {
   BodyContainer,
-  DetailedPlaceholderContainer,
+  DetailedPostContainer,
   HeaderContainer,
   StyledProfileIcon,
   UserAccount,
   UserContainer,
   UserName,
-} from "./DetailedPostPlaceholder.styled";
+} from "./DetailedPost.styled";
 
 type PostProps = {
   icon?: string;
@@ -21,7 +21,7 @@ const formatText = (text: string): string => {
 
 const DetailedPost = ({ icon, name, account, text }: PostProps) => {
   return (
-    <DetailedPlaceholderContainer>
+    <DetailedPostContainer>
       <HeaderContainer>
         <StyledProfileIcon imageSrc={icon} colorByText={name} />
         <UserContainer>
@@ -30,7 +30,7 @@ const DetailedPost = ({ icon, name, account, text }: PostProps) => {
         </UserContainer>
       </HeaderContainer>
       <BodyContainer>{formatText(text)}</BodyContainer>
-    </DetailedPlaceholderContainer>
+    </DetailedPostContainer>
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ErrorPagePlaceholderContainer = styled.div`
+export const ErrorPageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Pagination } from "../../api/postTypes";
 import PostListHeader from "./components/PostListHeader";
 import PostListResult from "./components/PostListResult";
-import { PostListPlaceholderContainer } from "./PostListPlaceholder.styled";
+import { PostListContainer } from "./PostList.styled";
 
 const PostList = () => {
   const [filter, setFilter] = useState<string>("");
@@ -14,7 +14,7 @@ const PostList = () => {
   );
 
   return (
-    <PostListPlaceholderContainer>
+    <PostListContainer>
       <PostListHeader
         filter={filter}
         setFilter={setFilter}
@@ -26,7 +26,7 @@ const PostList = () => {
         usersData={usersData}
         requestStatus={requestStatus}
       />
-    </PostListPlaceholderContainer>
+    </PostListContainer>
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DetailedPostHeaderPlaceholderContainer = styled.div`
+export const DetailedPostHeaderContainer = styled.div`
   align-items: center;
   display: flex;
   gap: 2em;

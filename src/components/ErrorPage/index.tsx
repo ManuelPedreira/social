@@ -1,11 +1,11 @@
 import ErrorPlaceholder from "../ErrorPlaceholder";
-import { ErrorPagePlaceholderContainer } from "./ErrorPagePlaceholder.styled";
+import { ErrorPageContainer } from "./ErrorPage.styled";
 
 const ErrorPage = () => {
   return (
-    <ErrorPagePlaceholderContainer>
+    <ErrorPageContainer>
       <ErrorPlaceholder />
-    </ErrorPagePlaceholderContainer>
+    </ErrorPageContainer>
   );
 };
 

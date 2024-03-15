@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CompactPost from "../CompactPost";
 
-export const CommentsPlaceholderContainer = styled.div`
+export const CommentsContainer = styled.div`
   border-bottom: 1px solid #2f3336;
 `;
 

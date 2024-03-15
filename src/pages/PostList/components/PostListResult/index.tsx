@@ -5,7 +5,7 @@ import LoadingSpinner from "../../../../components/LoadingSpinner";
 import {
   CenterElementContainer,
   StyledCompactPost,
-} from "./PostListResultPlaceholder.styled";
+} from "./PostListResult.styled";
 
 type PostListResultProps = {
   postsData: Post[];

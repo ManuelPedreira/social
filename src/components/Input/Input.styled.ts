@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ElementInputPlaceholderContainer = styled.label`
+export const InputContainer = styled.label`
   display: flex;
   gap: 1em;
   background-color: #202327;

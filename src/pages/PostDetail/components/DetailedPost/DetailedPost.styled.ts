@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ProfileIcon from "../../../../components/ProfileIcon";
 
-export const DetailedPlaceholderContainer = styled.div`
+export const DetailedPostContainer = styled.div`
   display: flex;
   text-align: left;
   flex-direction: column;

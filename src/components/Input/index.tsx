@@ -1,10 +1,7 @@
 import { ReactNode } from "react";
-import {
-  ElementInputPlaceholderContainer,
-  StyledInput,
-} from "./ElementInputPlaceholder.styled";
+import { InputContainer, StyledInput } from "./Input.styled";
 
-type ElementInputProps = {
+type InputProps = {
   children?: ReactNode;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
@@ -12,23 +9,23 @@ type ElementInputProps = {
   className?: string;
 };
 
-const ElementInput = ({
+const Input = ({
   onChange,
   placeholder,
   value,
   children,
-  className = "",
-}: ElementInputProps) => {
+  className,
+}: InputProps) => {
   return (
-    <ElementInputPlaceholderContainer className={className}>
+    <InputContainer className={className}>
       {children}
       <StyledInput
         onChange={onChange}
         placeholder={placeholder}
         value={value}
       />
-    </ElementInputPlaceholderContainer>
+    </InputContainer>
   );
 };
 
-export default ElementInput;
+export default Input;

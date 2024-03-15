@@ -6,8 +6,8 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorPlaceholder from "../../components/ErrorPlaceholder";
 import {
   CenterElementContainer,
-  PostDetailedPlaceholderContainer,
-} from "./PostDetailPlaceholder.styled";
+  PostDetailedContainer,
+} from "./PostDetail.styled";
 import Comments from "../../components/Comments";
 import DetailedPost from "./components/DetailedPost";
 
@@ -22,28 +22,28 @@ const PostDetail = () => {
     overallRequestStatus.includes(RequestStatus.LOADING)
   ) {
     return (
-      <PostDetailedPlaceholderContainer>
+      <PostDetailedContainer>
         <DetailedPostHeader onClick={() => navigate("/")} />
         <CenterElementContainer>
           <LoadingSpinner />
         </CenterElementContainer>
-      </PostDetailedPlaceholderContainer>
+      </PostDetailedContainer>
     );
   }
 
   if (overallRequestStatus.includes(RequestStatus.ERROR)) {
     return (
-      <PostDetailedPlaceholderContainer>
+      <PostDetailedContainer>
         <DetailedPostHeader onClick={() => navigate("/")} />
         <CenterElementContainer>
           <ErrorPlaceholder />{" "}
         </CenterElementContainer>
-      </PostDetailedPlaceholderContainer>
+      </PostDetailedContainer>
     );
   }
 
   return (
-    <PostDetailedPlaceholderContainer>
+    <PostDetailedContainer>
       <DetailedPostHeader onClick={() => navigate("/")} />
       <DetailedPost
         account={`@${userData?.username}`}
@@ -51,7 +51,7 @@ const PostDetail = () => {
         text={postData?.body || ""}
       />
       <Comments commentsData={commentsData} />
-    </PostDetailedPlaceholderContainer>
+    </PostDetailedContainer>
   );
 };
 

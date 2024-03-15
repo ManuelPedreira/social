@@ -1,8 +1,5 @@
 import { Comment } from "../../api/postTypes";
-import {
-  CommentsPlaceholderContainer,
-  StyledCompactPost,
-} from "./CommentsPlaceholder.styled";
+import { CommentsContainer, StyledCompactPost } from "./Comments.styled";
 
 const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
   const formatText = (text?: string): string => {
@@ -10,7 +7,7 @@ const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
   };
 
   return (
-    <CommentsPlaceholderContainer>
+    <CommentsContainer>
       {commentsData.map((commentData) => {
         const { id, body, email } = commentData;
         const [name, username] = String(email).split("@");
@@ -25,7 +22,7 @@ const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
           />
         );
       })}
-    </CommentsPlaceholderContainer>
+    </CommentsContainer>
   );
 };
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ProfileIcon from "../ProfileIcon";
 
-export const CompactPostPlaceholderContainer = styled.div`
+export const CompactPostContainer = styled.div`
   display: flex;
   text-align: left;
   gap: 0.5em;

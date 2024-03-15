@@ -1,11 +1,16 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./App.css";
 import routes from "./routes";
+import GlobalStyles from "./theme/GlobalStyles";
 
 function App() {
   const router = createBrowserRouter(routes);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <GlobalStyles />
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

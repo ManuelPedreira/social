@@ -1,7 +1,9 @@
 import { Pagination } from "../../../../api/postTypes";
-import SearchInput from "../../../../components/SearchInput";
-import PagesNavigator from "../../../../components/PagesNavigator";
-import "./styles.css";
+import {
+  PostListHeaderContainer,
+  StyledPaginationNavigator,
+  StyledSearchInput,
+} from "./PostListHeader.styled";
 
 type PostListHeaderProps = {
   filter: string;
@@ -17,29 +19,32 @@ const PostListHeader = ({
   setPagination,
 }: PostListHeaderProps) => {
   const getVisualizationMode = () => {
-    if (pagination._limit) return postListHeaderMode.PAGINATION;
-    return postListHeaderMode.SEARCH;
+    if (pagination._limit) return PostListHeaderMode.PAGINATION;
+    return PostListHeaderMode.SEARCH;
   };
 
   return (
-    <div className={`postListHeader ${getVisualizationMode()}`}>
-      <SearchInput
+    <PostListHeaderContainer>
+      <StyledSearchInput
         placeholder="Search"
-        className="searchInput"
         value={filter}
         onChange={({ target }) => {
           if (pagination._limit) setPagination({});
           setFilter(target.value);
         }}
       />
-      <PagesNavigator pagination={pagination} setPagination={setPagination} />
-    </div>
+      <StyledPaginationNavigator
+        visualizationMode={getVisualizationMode()}
+        pagination={pagination}
+        setPagination={setPagination}
+      />
+    </PostListHeaderContainer>
   );
 };
 
 export default PostListHeader;
 
-export const enum postListHeaderMode {
+export const enum PostListHeaderMode {
   SEARCH = "search",
   PAGINATION = "pagination",
 }
