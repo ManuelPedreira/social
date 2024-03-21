@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   StyledIcon,
   MessageContainer,
@@ -9,8 +8,10 @@ import {
   BottomAreaContainer,
   LimitCounter,
   VerticalDividerBar,
+  StyledSpinner,
 } from "./NewPost.styled";
 import { RequestStatus } from "../../api/postTypes";
+import { useState } from "react";
 
 type NewPostProps = {
   postMessage: string;
@@ -27,7 +28,10 @@ const NewPost = ({
   onSendPost,
   charsLimit,
 }: NewPostProps) => {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
   const charsLeft = charsLimit - postMessage.length;
+
+  const showExtended = isFocused || postMessage;
 
   return (
     <NewPostContainer>
@@ -36,24 +40,24 @@ const NewPost = ({
         <StyledTextArea
           value={postMessage}
           onChange={({ target }) => onChangePostMessage(target.value)}
-          placeholder="What is happening?!"
+          placeholder="What's going on?!"
           maxLength={charsLimit}
+          onFocusChange={(isInFocus) => setIsFocused(isInFocus)}
         />
-        {postMessage ? <HorizontalDividerBar /> : <></>}
+        {showExtended ? <HorizontalDividerBar /> : null}
         <BottomAreaContainer>
-          {postMessage ? (
-            <LimitCounter charsLeft={charsLeft}>{charsLeft}</LimitCounter>
-          ) : (
-            <></>
-          )}
-          {postMessage ? <VerticalDividerBar /> : <></>}
+          {showExtended ? (
+            <LimitCounter $charsCount={charsLeft}>{charsLeft}</LimitCounter>
+          ) : null}
+          {showExtended ? <VerticalDividerBar /> : null}
           <StyledButton
             onClick={() => {
               onSendPost(postMessage);
             }}
             disabled={!postMessage.length}
+            showError={status === RequestStatus.ERROR}
           >
-            Send
+            {status === RequestStatus.LOADING ? <StyledSpinner /> : "Send"}
           </StyledButton>
         </BottomAreaContainer>
       </MessageContainer>

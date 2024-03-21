@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ProfileIcon from "../ProfileIcon";
 import Button from "../Button";
 import TextArea from "../TextArea";
+import SpinerSVG from "../svg/SpinnerSVG";
 
 export const NewPostContainer = styled.label`
   display: flex;
@@ -36,9 +37,9 @@ export const HorizontalDividerBar = styled.hr`
   border-top: 1px solid #2f3336;
 `;
 
-export const VerticalDividerBar = styled.div`
+export const VerticalDividerBar = styled.hr`
   height: 100%;
-  width: 1px;
+  margin: 0;
   border: 0;
   border-left: 1px solid #2f3336;
 `;
@@ -51,33 +52,43 @@ export const BottomAreaContainer = styled.div`
 `;
 
 type LimitCounterProps = {
-  charsLeft?: number;
+  $charsCount?: number;
+};
+
+const getCountColor = (count?: number) => {
+  if (count === undefined) return "#666";
+  if (count <= 0) return "red";
+  if (count < 30) return "yellow";
+  return "#666";
 };
 
 export const LimitCounter = styled.span<LimitCounterProps>`
-  color: ${({ charsLeft }) => {
-    if (charsLeft === undefined) return "#666";
-    if (charsLeft <= 0) return "red";
-    if (charsLeft < 30) return "yellow";
-    return "#666";
-  }};
-
+  color: ${({ $charsCount }) => getCountColor($charsCount)};
   transition: 0.5s all;
 `;
 
-export const StyledButton = styled(Button)`
-  width: fit-content;
+export const StyledSpinner = styled(SpinerSVG)`
+  width: 20px;
+  height: 20px;
+  fill: white;
+`;
+
+type StyledButtonProps = {
+  showError?: boolean;
+};
+
+export const StyledButton = styled(Button)<StyledButtonProps>`
   align-self: end;
-  background-color: #1d9bf0;
+  background-color: ${({ showError }) => (showError ? "#c20d0d" : "#1d9bf0")};
   font-weight: 700;
   padding: 0.5em 1em;
 
   &:hover {
-    background-color: #1984cc;
+    background-color: ${({ showError }) => (showError ? "#8f0e0e" : "#1984cc")};
   }
 
   &:disabled,
   &:disabled:hover {
-    background-color: #125988;
+    background-color: ${({ showError }) => (showError ? "#590d0d" : "#125988")};
   }
 `;

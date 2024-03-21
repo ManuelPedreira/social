@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { TextAreaContainer } from "./TextArea.styled";
 
 type TextAreaProps = {
@@ -8,6 +8,7 @@ type TextAreaProps = {
   maxLength?: number;
   onEnter?: () => void;
   className?: string;
+  onFocusChange?: (isFocus: boolean) => void;
 };
 
 const TextArea = ({
@@ -17,6 +18,7 @@ const TextArea = ({
   maxLength,
   onEnter,
   className,
+  onFocusChange,
 }: TextAreaProps) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -40,6 +42,8 @@ const TextArea = ({
       }}
       placeholder={placeholder}
       className={className}
+      onFocus={() => (onFocusChange ? onFocusChange(true) : undefined)}
+      onBlur={() => (onFocusChange ? onFocusChange(false) : undefined)}
     />
   );
 };
