@@ -35,7 +35,7 @@ const NewPost = ({
 
   return (
     <NewPostContainer>
-      <StyledIcon colorByText="Leanne Graham" />
+      <StyledIcon colorByText="Patricia Lebsack" />
       <MessageContainer>
         <StyledTextArea
           value={postMessage}

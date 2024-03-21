@@ -20,7 +20,7 @@ const PostList = () => {
   );
 
   const { newPostText, setNewPostText, newPostRequestStatus, sendNewPost } =
-    useNewPost(localPosts, setLocalPosts);
+    useNewPost(setLocalPosts);
 
   return (
     <PostListContainer>

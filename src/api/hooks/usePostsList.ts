@@ -6,8 +6,8 @@ import { includesInsensitive } from "../../utils";
 const usePostsList = (
   filter: string,
   pagination?: Pagination,
-  localPost?: Post[]
-): { postsData: Post[]; usersData: User[]; requestStatus: RequestStatus } => {
+  localPosts?: Post[]
+) => {
   const [usersData, setUsersData] = useState<User[]>([]);
   const [postsData, setPostsData] = useState<Post[]>([]);
   const [requestStatus, setRequestStatus] = useState<RequestStatus>(
@@ -20,8 +20,6 @@ const usePostsList = (
     getPaginatedPosts(pagination)
       .then((posts) => {
         setPostsData(posts);
-        //setPostsData(localPost ? [...localPost, ...posts] : posts);
-
         const userIds = posts.map(({ userId }) => userId);
 
         return getUsersByIds(userIds);
@@ -31,10 +29,15 @@ const usePostsList = (
         setRequestStatus(RequestStatus.OK);
       })
       .catch(() => setRequestStatus(RequestStatus.ERROR));
-  }, [pagination, localPost]);
+  }, [pagination]);
+
+  const allPosts: Post[] =
+    localPosts && !pagination?._limit
+      ? [...localPosts, ...postsData]
+      : postsData;
 
   const filteredPosts =
-    postsData.filter((postData) => {
+    allPosts.filter((postData) => {
       const userData = usersData.find(({ id }) => id === postData.userId);
 
       const name = userData?.name || "";
