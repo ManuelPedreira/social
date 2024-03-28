@@ -3,6 +3,7 @@ import ProfileIcon from "../ProfileIcon";
 import Button from "../Button";
 import TextArea from "../TextArea";
 import SpinerSVG from "../svg/SpinnerSVG";
+import { getCountColor } from "./NewPost.utils";
 
 export const NewPostContainer = styled.label`
   display: flex;
@@ -53,13 +54,6 @@ export const BottomAreaContainer = styled.div`
 
 type LimitCounterProps = {
   $charsCount?: number;
-};
-
-const getCountColor = (count?: number) => {
-  if (count === undefined) return "#666";
-  if (count <= 0) return "red";
-  if (count < 30) return "yellow";
-  return "#666";
 };
 
 export const LimitCounter = styled.span<LimitCounterProps>`

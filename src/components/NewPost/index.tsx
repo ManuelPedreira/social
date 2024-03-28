@@ -28,10 +28,10 @@ const NewPost = ({
   onSendPost,
   charsLimit,
 }: NewPostProps) => {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
   const charsLeft = charsLimit - postMessage.length;
 
-  const showExtended = isFocused || postMessage;
+  const isExtendedView = isInputFocused || postMessage;
 
   return (
     <NewPostContainer>
@@ -42,14 +42,16 @@ const NewPost = ({
           onChange={({ target }) => onChangePostMessage(target.value)}
           placeholder="What's going on?!"
           maxLength={charsLimit}
-          onFocusChange={(isInFocus) => setIsFocused(isInFocus)}
+          onFocusChange={(isInFocus) => setIsInputFocused(isInFocus)}
         />
-        {showExtended ? <HorizontalDividerBar /> : null}
+        {isExtendedView ? <HorizontalDividerBar /> : null}
         <BottomAreaContainer>
-          {showExtended ? (
-            <LimitCounter $charsCount={charsLeft}>{charsLeft}</LimitCounter>
+          {isExtendedView ? (
+            <>
+              <LimitCounter $charsCount={charsLeft}>{charsLeft}</LimitCounter>
+              <VerticalDividerBar />
+            </>
           ) : null}
-          {showExtended ? <VerticalDividerBar /> : null}
           <StyledButton
             onClick={() => {
               onSendPost(postMessage);

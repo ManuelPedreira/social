@@ -30,9 +30,7 @@ const PostList = () => {
         pagination={pagination}
         setPagination={setPagination}
       />
-      {filter || pagination._limit ? (
-        <></>
-      ) : (
+      {!filter && !pagination._limit ? (
         <NewPost
           postMessage={newPostText}
           onChangePostMessage={setNewPostText}
@@ -40,7 +38,7 @@ const PostList = () => {
           status={newPostRequestStatus}
           onSendPost={sendNewPost}
         />
-      )}
+      ) : null}
       <PostListResult
         postsData={postsData}
         usersData={usersData}

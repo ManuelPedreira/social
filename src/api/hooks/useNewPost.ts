@@ -9,8 +9,6 @@ const useNewPost = (
   const [newPostRequestStatus, setNewPostRequestStatus] =
     useState<RequestStatus>(RequestStatus.IDLE);
 
-  const [fakeId, setFakeId] = useState<number>(200);
-
   const sendNewPost = (newPostText: string) => {
     setNewPostRequestStatus(RequestStatus.LOADING);
 
@@ -24,9 +22,8 @@ const useNewPost = (
       .then((post) => {
         setLocalPosts((currentLocalPosts) => [
           ...currentLocalPosts,
-          { ...post, id: fakeId },
+          { ...post, id: Number(new Date()) }, //falsear Id, no usar en entorno real
         ]);
-        setFakeId((currentFakeId) => currentFakeId + 1);
         setNewPostText("");
         setNewPostRequestStatus(RequestStatus.IDLE);
       })

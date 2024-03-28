@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { TextAreaContainer } from "./TextArea.styled";
 
 type TextAreaProps = {
@@ -20,30 +19,30 @@ const TextArea = ({
   className,
   onFocusChange,
 }: TextAreaProps) => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const resizeTextArea = (textAreaNode: HTMLTextAreaElement) => {
+    textAreaNode.style.height = "28px";
+    const scrollHeight = textAreaNode.scrollHeight;
 
-  useEffect(() => {
-    if (textAreaRef && textAreaRef.current?.style) {
-      textAreaRef.current.style.height = "0px";
-      const scrollHeight = textAreaRef.current.scrollHeight;
+    textAreaNode.style.height = scrollHeight + "px";
+  };
 
-      textAreaRef.current.style.height = scrollHeight + "px";
-    }
-  }, [textAreaRef, value]);
+  const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(e);
+    resizeTextArea(e.target);
+  };
 
   return (
     <TextAreaContainer
-      ref={textAreaRef}
       value={value}
-      onChange={onChange}
+      onChange={handleOnChange}
       maxLength={maxLength}
       onKeyDown={(target) => {
         if (onEnter && target.key === "Enter") onEnter();
       }}
       placeholder={placeholder}
       className={className}
-      onFocus={() => (onFocusChange ? onFocusChange(true) : undefined)}
-      onBlur={() => (onFocusChange ? onFocusChange(false) : undefined)}
+      onFocus={() => onFocusChange?.(true)}
+      onBlur={() => onFocusChange?.(false)}
     />
   );
 };

@@ -6,9 +6,11 @@ export const TextAreaContainer = styled.textarea`
   font-family: "Segoe UI", Helvetica, Arial, sans-serif;
   overflow: hidden;
   padding: 0;
-  min-height: 28px;
+  height: 28px;
 
   &:focus {
     outline: 0;
   }
 `;
+
+/* TextAreaContainer.defaultProps = { areaHeight: 28 }; */
