@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TextAreaContainer = styled.textarea`
   resize: none;
   border: 0;
-  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: ${({ theme }) => theme.font.family.slim};
   overflow: hidden;
   padding: 0;
   height: 28px;

@@ -1,6 +1,15 @@
-export const getCountColor = (count?: number) => {
-  if (count === undefined) return "#666";
-  if (count <= 0) return "red";
-  if (count < 30) return "yellow";
-  return "#666";
+import { Theme } from "../../theme/styled";
+
+export const getCountColor = (theme: Theme, count?: number) => {
+  const color = theme.color;
+  if (count === undefined) return color.text.darker;
+  if (count <= 0) return color.error.main;
+  if (count < 30) return color.error.warning;
+  return color.text.darker;
+};
+
+export const getColorPalette = (theme: Theme, isError?: boolean) => {
+  const color = theme.color;
+  if (isError) return color.error;
+  return color.secondary;
 };

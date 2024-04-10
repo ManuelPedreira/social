@@ -2,22 +2,20 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button`
   display: inherit;
-  padding: 9px;
   border-radius: 90px;
   transition: all 0.2s;
   background-color: transparent;
+  border: 0;
+  padding: 9px;
+
+  cursor: pointer;
 
   &:hover {
-    border-color: transparent;
-    background-color: #202327;
+    background-color: ${({ theme }) => theme.color.primary.dark};
   }
 
   &:active {
-    background-color: #30343a;
-  }
-
-  &:focus {
-    outline: 1px;
+    background-color: ${({ theme }) => theme.color.primary.main};
   }
 
   * {
@@ -26,15 +24,15 @@ export const StyledButton = styled.button`
 
   &:disabled {
     cursor: default;
-    color: gray;
+    color: ${({ theme }) => theme.color.primary.light};
 
     &:hover {
       background-color: transparent;
     }
 
     * {
-      fill: gray;
-      color: gray;
+      fill: ${({ theme }) => theme.color.primary.light};
+      color: ${({ theme }) => theme.color.primary.light};
     }
   }
 `;

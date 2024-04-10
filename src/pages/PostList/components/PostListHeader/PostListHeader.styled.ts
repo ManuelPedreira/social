@@ -5,8 +5,8 @@ import { PostListHeaderMode } from ".";
 
 export const PostListHeaderContainer = styled.div`
   display: flex;
-  margin: 1em;
-  gap: 1em;
+  margin: 1rem;
+  gap: 1rem;
 `;
 
 export const StyledSearchInput = styled(SearchInput)`
@@ -21,7 +21,7 @@ export const StyledPaginationNavigator = styled(
   PaginationNavigator
 )<StyledPaginationNavigatorProps>`
   width: ${({ visualizationMode }) =>
-    visualizationMode === PostListHeaderMode.SEARCH ? "3.1em" : "15em"};
+    visualizationMode === PostListHeaderMode.SEARCH ? "3.1rem" : "15rem"};
 
   transition: width 0.2s;
   border-radius: 30px;

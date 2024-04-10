@@ -2,16 +2,17 @@ import styled from "styled-components";
 import CompactPost from "../../../../components/CompactPost";
 
 export const StyledCompactPost = styled(CompactPost)`
-  padding: 1em 1em 1.2em 1em;
+  padding: 1rem 1rem 1.2rem 1rem;
   transition: all 0.3s;
-  outline: 1px solid #2f3336;
+  outline: 1px solid ${({ theme }) => theme.color.primary.main};
 
   &:hover {
     transform: scale(1.02);
     border-radius: 5px;
-    box-shadow: 0 0 1em 0.1em rgb(29, 155, 240, 0.7);
+    box-shadow: 0 0 1rem 0.1rem
+      ${({ theme }) => theme.color.secondary.transparent};
     z-index: 100;
-    outline: 1px solid #1d9bf0;
+    outline: 1px solid ${({ theme }) => theme.color.secondary.main};
   }
 `;
 
