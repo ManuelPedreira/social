@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { TextAreaContainer } from "./TextArea.styled";
 
 type TextAreaProps = {
@@ -19,6 +20,8 @@ const TextArea = ({
   className,
   onFocusChange,
 }: TextAreaProps) => {
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
   const resizeTextArea = (textAreaNode: HTMLTextAreaElement) => {
     textAreaNode.style.height = "28px";
     const scrollHeight = textAreaNode.scrollHeight;
@@ -26,15 +29,22 @@ const TextArea = ({
     textAreaNode.style.height = scrollHeight + "px";
   };
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  /*   const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(e);
     resizeTextArea(e.target);
-  };
+  }; */
+
+  useEffect(() => {
+    //si no se usa useEffect, al enviar el post, no se redimensiona
+    if (textAreaRef && textAreaRef.current?.style)
+      resizeTextArea(textAreaRef.current);
+  }, [value]);
 
   return (
     <TextAreaContainer
+      ref={textAreaRef}
       value={value}
-      onChange={handleOnChange}
+      onChange={onChange}
       maxLength={maxLength}
       onKeyDown={(target) => {
         if (onEnter && target.key === "Enter") onEnter();

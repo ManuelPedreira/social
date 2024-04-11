@@ -21,7 +21,9 @@ const darkTheme: Theme = {
       main: "#c20d0d",
       dark: "#8f0e0e",
       darker: "#590d0d",
-      warning: "#d5be1e",
+    },
+    warning: {
+      main: "#d5be1e",
     },
     text: {
       main: "#e7e9ea",

@@ -12,21 +12,23 @@ const lightTheme: Theme = {
       dark: "#d5d5d5",
     },
     secondary: {
-      main: "#1d9bf0",
-      dark: "#1984cc",
-      darker: "#125988",
+      main: "#7dbdea",
+      dark: "#53aeec",
+      darker: "#afcae8",
       transparent: "rgba(29, 155, 240, 0.7)",
     },
     error: {
       main: "#c20d0d",
       dark: "#8f0e0e",
       darker: "#590d0d",
-      warning: "#d5be1e",
+    },
+    warning: {
+      main: "#ad8a00",
     },
     text: {
       main: "#111",
       dark: "#666",
-      darker: "#999",
+      darker: "#888",
       lighter: "#000",
     },
   },

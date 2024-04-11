@@ -1,4 +1,5 @@
 import { Pagination } from "../../../../api/postTypes";
+import ThemeSwitch from "../../../../components/ThemeSwitch";
 import {
   PostListHeaderContainer,
   StyledPaginationNavigator,
@@ -38,6 +39,7 @@ const PostListHeader = ({
         pagination={pagination}
         setPagination={setPagination}
       />
+      <ThemeSwitch />
     </PostListHeaderContainer>
   );
 };

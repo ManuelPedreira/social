@@ -4,7 +4,7 @@ export const getCountColor = (theme: Theme, count?: number) => {
   const color = theme.color;
   if (count === undefined) return color.text.darker;
   if (count <= 0) return color.error.main;
-  if (count < 30) return color.error.warning;
+  if (count < 30) return color.warning.main;
   return color.text.darker;
 };
 

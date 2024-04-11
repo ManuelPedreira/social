@@ -22,7 +22,9 @@ export type Theme = {
       main: string;
       dark: string;
       darker: string;
-      warning: string;
+    };
+    warning: {
+      main: string;
     };
     text: {
       main: string;

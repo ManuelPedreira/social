@@ -28,7 +28,7 @@ export const StyledIcon = styled(ProfileIcon)`
 export const StyledTextArea = styled(TextArea)`
   font-size: 1.4rem;
   font-weight: ${({ theme }) => theme.font.weight.slim};
-  line-height: 1.2rem;
+  line-height: 1.7rem;
   margin: 0.2rem 0 0 0;
 `;
 
@@ -58,6 +58,7 @@ type LimitCounterProps = {
 
 export const LimitCounter = styled.span<LimitCounterProps>`
   color: ${({ $charsCount, theme }) => getCountColor(theme, $charsCount)};
+  background-color: transparent;
   transition: 0.5s all;
 `;
 
@@ -86,6 +87,7 @@ export const StyledButton = styled(Button)<StyledButtonProps>`
 
   &:disabled,
   &:disabled:hover {
+    color: ${({ theme }) => theme.color.text.dark};
     background-color: ${({ showError, theme }) =>
       getColorPalette(theme, showError).darker};
   }
