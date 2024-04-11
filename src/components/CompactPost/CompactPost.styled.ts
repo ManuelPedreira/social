@@ -4,21 +4,22 @@ import ProfileIcon from "../ProfileIcon";
 export const CompactPostContainer = styled.div`
   display: flex;
   text-align: left;
-  gap: 0.5em;
+  gap: 0.5rem;
+  background-color: transparent;
 `;
 
 export const UserContainer = styled.div`
   display: flex;
-  gap: 0.3em;
+  gap: 0.3rem;
   padding-bottom: 2px;
 `;
 
 export const UserName = styled.span`
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 
 export const UserAccount = styled.span`
-  color: #71767b;
+  color: ${({ theme }) => theme.color.text.darker};
 `;
 
 export const StyledProfileIcon = styled(ProfileIcon)`

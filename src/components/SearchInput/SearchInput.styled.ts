@@ -5,13 +5,13 @@ import Input from "../Input";
 export const StyledInput = styled(Input)`
   &:focus-within {
     * {
-      fill: #1d9bf0;
+      fill: ${({ theme }) => theme.color.secondary.main};
     }
   }
 `;
 
 export const StyledSearchIcon = styled(SearchIconSVG)`
-  width: 1.2em;
+  width: 1.2rem;
   flex-shrink: 0;
   background-color: transparent;
 `;

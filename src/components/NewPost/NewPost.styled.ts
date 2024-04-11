@@ -3,12 +3,12 @@ import ProfileIcon from "../ProfileIcon";
 import Button from "../Button";
 import TextArea from "../TextArea";
 import SpinerSVG from "../svg/SpinnerSVG";
-import { getCountColor } from "./NewPost.utils";
+import { getColorPalette, getCountColor } from "./NewPost.utils";
 
 export const NewPostContainer = styled.label`
   display: flex;
-  gap: 0.7em;
-  padding: 0.8em 1em;
+  gap: 0.7rem;
+  padding: 0.8rem 1rem;
 `;
 
 export const MessageContainer = styled.div`
@@ -16,7 +16,7 @@ export const MessageContainer = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: baseline;
-  gap: 0.3em;
+  gap: 0.3rem;
 `;
 
 export const StyledIcon = styled(ProfileIcon)`
@@ -26,30 +26,30 @@ export const StyledIcon = styled(ProfileIcon)`
 `;
 
 export const StyledTextArea = styled(TextArea)`
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 26px;
-  margin: 0.2em 0 0 0;
+  font-size: 1.4rem;
+  font-weight: ${({ theme }) => theme.font.weight.slim};
+  line-height: 1.7rem;
+  margin: 0.2rem 0 0 0;
 `;
 
 export const HorizontalDividerBar = styled.hr`
   width: 100%;
   border: 0;
-  border-top: 1px solid #2f3336;
+  border-top: 1px solid ${({ theme }) => theme.color.primary.main};
 `;
 
 export const VerticalDividerBar = styled.hr`
   height: 100%;
   margin: 0;
   border: 0;
-  border-left: 1px solid #2f3336;
+  border-left: 1px solid ${({ theme }) => theme.color.primary.main};
 `;
 
 export const BottomAreaContainer = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: 1em;
+  gap: 1rem;
 `;
 
 type LimitCounterProps = {
@@ -57,14 +57,15 @@ type LimitCounterProps = {
 };
 
 export const LimitCounter = styled.span<LimitCounterProps>`
-  color: ${({ $charsCount }) => getCountColor($charsCount)};
+  color: ${({ $charsCount, theme }) => getCountColor(theme, $charsCount)};
+  background-color: transparent;
   transition: 0.5s all;
 `;
 
 export const StyledSpinner = styled(SpinerSVG)`
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: ${({ theme }) => theme.color.text.main};
 `;
 
 type StyledButtonProps = {
@@ -73,16 +74,21 @@ type StyledButtonProps = {
 
 export const StyledButton = styled(Button)<StyledButtonProps>`
   align-self: end;
-  background-color: ${({ showError }) => (showError ? "#c20d0d" : "#1d9bf0")};
-  font-weight: 700;
-  padding: 0.5em 1em;
+  background-color: ${({ showError, theme }) =>
+    getColorPalette(theme, showError).dark};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
+  padding: 0.6rem 1rem;
 
   &:hover {
-    background-color: ${({ showError }) => (showError ? "#8f0e0e" : "#1984cc")};
+    background-color: ${({ showError, theme }) =>
+      getColorPalette(theme, showError).main};
+    color: ${({ theme }) => theme.color.text.lighter};
   }
 
   &:disabled,
   &:disabled:hover {
-    background-color: ${({ showError }) => (showError ? "#590d0d" : "#125988")};
+    color: ${({ theme }) => theme.color.text.dark};
+    background-color: ${({ showError, theme }) =>
+      getColorPalette(theme, showError).darker};
   }
 `;

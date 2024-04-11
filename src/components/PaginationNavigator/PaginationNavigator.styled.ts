@@ -6,25 +6,25 @@ export const PaginationNavigatorContainer = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.5rem;
 `;
 
 export const StyledButton = styled(Button)`
-  background-color: #202327;
-  border: 1px solid #202327;
+  background-color: ${({ theme }) => theme.color.background.light};
+  border: 1px solid ${({ theme }) => theme.color.background.light};
 
   &:active {
-    background-color: #3d454e;
+    background-color: ${({ theme }) => theme.color.primary.main};
   }
 
   &:hover {
-    border: 1px solid #1d9bf0;
+    border: 1px solid ${({ theme }) => theme.color.secondary.main};
   }
 
   &:disabled {
     &:hover {
-      background-color: #202327;
-      border: 1px solid #202327;
+      background-color: ${({ theme }) => theme.color.background.light};
+      border: 1px solid ${({ theme }) => theme.color.background.light};
     }
   }
 
@@ -38,7 +38,7 @@ export const StyledButton = styled(Button)`
 `;
 
 export const StyledInput = styled(Input)`
-  width: 2em;
+  width: 2rem;
 
   input {
     text-align: center;

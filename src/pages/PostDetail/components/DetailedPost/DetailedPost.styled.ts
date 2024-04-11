@@ -5,14 +5,14 @@ export const DetailedPostContainer = styled.div`
   display: flex;
   text-align: left;
   flex-direction: column;
-  gap: 0.7em;
-  padding: 0.5em 1em 2em 1em;
+  gap: 0.7rem;
+  padding: 0.5rem 1rem 2rem 1rem;
 `;
 
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.5em;
+  gap: 0.5rem;
 `;
 
 export const StyledProfileIcon = styled(ProfileIcon)`
@@ -29,13 +29,13 @@ export const UserContainer = styled.div`
 `;
 
 export const UserName = styled.span`
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 
 export const UserAccount = styled.span`
-  color: #71767b;
+  color: ${({ theme }) => theme.color.text.darker};
 `;
 
 export const BodyContainer = styled.span`
-  font-size: 17px;
+  font-size: 1.1rem;
 `;

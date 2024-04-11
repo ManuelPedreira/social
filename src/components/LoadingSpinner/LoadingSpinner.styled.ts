@@ -8,5 +8,5 @@ export const LoadingSpinnerContainer = styled.div`
 export const StyledSpinner = styled(SpinerSVG)`
   width: 30px;
   height: 30px;
-  fill: white;
+  fill: ${({ theme }) => theme.color.text.main};
 `;

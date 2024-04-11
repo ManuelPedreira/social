@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
 export const StyledSearchIconSVG = styled.svg`
-  fill: gray;
+  fill: ${({ theme }) => theme.color.text.darker};
 `;

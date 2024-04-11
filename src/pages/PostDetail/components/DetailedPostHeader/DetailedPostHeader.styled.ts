@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const DetailedPostHeaderContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: 2em;
-  padding: 0.5em 0.7em;
+  gap: 2rem;
+  padding: 0.5rem 0.7rem;
 `;
 
 export const HeaderText = styled.span`
-  color: #e7e9ea;
-  font-weight: 700;
-  font-size: 20px;
+  color: ${({ theme }) => theme.color.text.main};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
+  font-size: 1.3rem;
 `;

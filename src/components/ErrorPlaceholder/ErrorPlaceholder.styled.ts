@@ -8,7 +8,7 @@ export const ErrorPlaceholderContainer = styled.div`
 `;
 
 export const IconContainer = styled.div`
-  border: 4px solid #fff;
+  border: 4px solid ${({ theme }) => theme.color.text.main};
   border-radius: 40px;
   width: 50px;
   height: 50px;
@@ -16,7 +16,7 @@ export const IconContainer = styled.div`
 
 export const Text = styled.span`
   font-size: 35px;
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.font.weight.bold};
   background-color: transparent;
 `;
 

@@ -13,7 +13,7 @@ const degrees: Record<Direction, number> = {
 };
 
 export const StyledArrowSVG = styled.svg<StyledArrowSVGProps>`
-  fill: white;
+  fill: ${({ theme }) => theme.color.text.main};
   width: 20px;
   background-color: transparent;
 

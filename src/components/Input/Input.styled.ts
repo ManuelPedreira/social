@@ -2,16 +2,15 @@ import styled from "styled-components";
 
 export const InputContainer = styled.label`
   display: flex;
-  gap: 1em;
-  background-color: #202327;
-  color: #e7e9ea;
-  padding: 0.7em 1.2em;
-  border-radius: 2em;
-  outline: 1px solid #202327;
+  gap: 1rem;
+  background-color: ${({ theme }) => theme.color.background.light};
+  outline: 1px solid ${({ theme }) => theme.color.background.light};
+  padding: 0.7rem 1.2rem;
+  border-radius: 2rem;
   transition: all 0.1s;
 
   &:focus-within {
-    outline: 1px solid #1d9bf0;
+    outline: 1px solid ${({ theme }) => theme.color.secondary.main};
   }
 `;
 
