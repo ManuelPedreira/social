@@ -30,8 +30,14 @@ const PostListHeader = ({
         placeholder="Search"
         value={filter}
         onChange={({ target }) => {
-          if (pagination._limit) setPagination({});
           setFilter(target.value);
+
+          if (target.value) setPagination({});
+          else
+            setPagination({
+              _limit: 10,
+              _page: 1,
+            });
         }}
       />
       <StyledPaginationNavigator
