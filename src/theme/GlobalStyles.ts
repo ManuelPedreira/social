@@ -16,6 +16,7 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+  background-color: ${({ theme }) => theme.color.background.main};
 }
 
 * {
@@ -23,7 +24,6 @@ body {
   letter-spacing: 0.02rem;
   font-weight: ${({ theme }) => theme.font.weight.normal};
   font-size: ${({ theme }) => theme.font.size};
-  background-color: ${({ theme }) => theme.color.background.main};
   color:  ${({ theme }) => theme.color.text.main};
 }
 

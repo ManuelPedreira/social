@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Button from "../Button";
-import Input from "../Input";
+import Button from "../../ui/Button";
+import Input from "../../ui/Input";
 
 export const PaginationNavigatorContainer = styled.div`
   display: flex;

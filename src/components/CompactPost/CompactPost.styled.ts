@@ -5,7 +5,6 @@ export const CompactPostContainer = styled.div`
   display: flex;
   text-align: left;
   gap: 0.5rem;
-  background-color: transparent;
 `;
 
 export const UserContainer = styled.div`

@@ -1,5 +1,6 @@
-import Button from "../../../../components/Button";
-import ArrorSVG from "../../../../components/svg/ArrorSVG";
+import Button from "../../../../ui/Button";
+import ArrorSVG from "../../../../ui/svg/ArrorSVG";
+
 import {
   DetailedPostHeaderContainer,
   HeaderText,

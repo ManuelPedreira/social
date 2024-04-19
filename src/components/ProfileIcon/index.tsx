@@ -1,5 +1,5 @@
+import ProfileIconSVG from "../../ui/svg/ProfileIconSVG";
 import { stringToColorHexa } from "../../utils";
-import ProfileIconSVG from "../svg/ProfileIconSVG";
 
 type ProfileIconProps = {
   imageSrc?: string;

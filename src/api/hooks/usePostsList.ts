@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getPaginatedPosts, getUsersByIds } from "../postCalls";
 import { Pagination, Post, RequestStatus, User } from "../postTypes";
 import { includesInsensitive } from "../../utils";
+import useToast from "../../providers/ToastContext/useToast";
 
 const usePostsList = (
   filter: string,
@@ -13,6 +14,7 @@ const usePostsList = (
   const [requestStatus, setRequestStatus] = useState<RequestStatus>(
     RequestStatus.IDLE
   );
+  const { createToast } = useToast();
 
   useEffect(() => {
     setRequestStatus(RequestStatus.LOADING);
@@ -27,8 +29,12 @@ const usePostsList = (
       .then((users) => {
         setUsersData(users);
         setRequestStatus(RequestStatus.OK);
+        createToast({ text: "Post Loaded!" });
       })
-      .catch(() => setRequestStatus(RequestStatus.ERROR));
+      .catch((e) => {
+        createToast({ text: e.message, type: "ERROR", timeOut: 10000 });
+        return setRequestStatus(RequestStatus.ERROR);
+      });
   }, [pagination]);
 
   const allPosts: Post[] =

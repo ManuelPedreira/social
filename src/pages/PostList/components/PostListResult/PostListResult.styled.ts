@@ -3,7 +3,7 @@ import CompactPost from "../../../../components/CompactPost";
 
 export const StyledCompactPost = styled(CompactPost)`
   padding: 1rem 1rem 1.2rem 1rem;
-  transition: all 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, outline 0.3s;
   outline: 1px solid ${({ theme }) => theme.color.primary.main};
 
   &:hover {

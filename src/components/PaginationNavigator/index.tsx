@@ -1,5 +1,5 @@
-import ArrorSVG from "../svg/ArrorSVG";
 import { Pagination } from "../../api/postTypes";
+import ArrorSVG from "../../ui/svg/ArrorSVG";
 import {
   PaginationNavigatorContainer,
   StyledButton,
