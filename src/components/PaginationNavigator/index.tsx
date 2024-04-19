@@ -56,7 +56,7 @@ const PaginationNavigator = ({
         setLimit(50);
         break;
       default:
-        setLimit(0);
+        setLimit(10);
         break;
     }
   };

@@ -10,7 +10,10 @@ import useNewPost from "../../api/hooks/useNewPost";
 
 const PostList = () => {
   const [filter, setFilter] = useState<string>("");
-  const [pagination, setPagination] = useState<Pagination>({});
+  const [pagination, setPagination] = useState<Pagination>({
+    _limit: 10,
+    _page: 1,
+  });
   const [localPosts, setLocalPosts] = useState<Post[]>([]);
 
   const { postsData, usersData, requestStatus } = usePostsList(
@@ -30,7 +33,7 @@ const PostList = () => {
         pagination={pagination}
         setPagination={setPagination}
       />
-      {!filter && !pagination._limit ? (
+      {!filter ? (
         <NewPost
           postMessage={newPostText}
           onChangePostMessage={setNewPostText}
