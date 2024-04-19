@@ -3,6 +3,7 @@ import routes from "./routes";
 import GlobalStyles from "./theme/GlobalStyles";
 import ThemeModeContextProvider from "./providers/ThemeModeContext";
 import CustomThemeProvider from "./providers/CustomTheme";
+import ToastContextProvider from "./providers/ToastContext";
 
 function App() {
   const router = createBrowserRouter(routes);
@@ -10,8 +11,10 @@ function App() {
   return (
     <ThemeModeContextProvider>
       <CustomThemeProvider>
-        <GlobalStyles />
-        <RouterProvider router={router} />
+        <ToastContextProvider>
+          <GlobalStyles />
+          <RouterProvider router={router} />
+        </ToastContextProvider>
       </CustomThemeProvider>
     </ThemeModeContextProvider>
   );

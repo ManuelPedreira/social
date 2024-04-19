@@ -1,5 +1,6 @@
 import useThemeModeContext from "../../providers/ThemeModeContext/useThemeModeContext";
-import DarkModeSVG from "../svg/DarkModeSVG";
+import DarkModeSVG from "../../ui/svg/DarkModeSVG";
+
 import { StyledButton } from "./ThemeSwitch.styled";
 
 const ThemeSwitch = () => {

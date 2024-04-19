@@ -4,6 +4,7 @@ export const TextAreaContainer = styled.textarea`
   resize: none;
   border: 0;
   font-family: ${({ theme }) => theme.font.family.slim};
+  background-color: transparent;
   overflow: hidden;
   padding: 0;
   height: 28px;
@@ -12,5 +13,3 @@ export const TextAreaContainer = styled.textarea`
     outline: 0;
   }
 `;
-
-/* TextAreaContainer.defaultProps = { areaHeight: 28 }; */

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Comment, Post, RequestStatus, User } from "../postTypes";
 import { getCommentsByPostId, getPostById, getUserById } from "../postCalls";
+import useToast from "../../providers/ToastContext/useToast";
 
 const usePostAndComments = (
   postId: number
@@ -19,6 +20,8 @@ const usePostAndComments = (
   const [commentsRequestStatus, setCommentsRequestStatus] =
     useState<RequestStatus>(RequestStatus.IDLE);
 
+  const { createToast } = useToast();
+
   const getPostData = () => {
     setPostRequestStatus(RequestStatus.LOADING);
 
@@ -31,8 +34,12 @@ const usePostAndComments = (
       .then((user) => {
         setUserData(user);
         setPostRequestStatus(RequestStatus.OK);
+        createToast({ text: "Post Loaded!" });
       })
-      .catch(() => setPostRequestStatus(RequestStatus.ERROR));
+      .catch((e) => {
+        createToast({ text: e.message, type: "ERROR", timeOut: 10000 });
+        return setPostRequestStatus(RequestStatus.ERROR);
+      });
   };
 
   const getCommentsData = () => {
@@ -42,8 +49,12 @@ const usePostAndComments = (
       .then((comments) => {
         setCommentsData(comments);
         setCommentsRequestStatus(RequestStatus.OK);
+        createToast({ text: "Comments Loaded!" });
       })
-      .catch(() => setCommentsRequestStatus(RequestStatus.ERROR));
+      .catch((e) => {
+        createToast({ text: e.message, type: "ERROR", timeOut: 10000 });
+        return setCommentsRequestStatus(RequestStatus.ERROR);
+      });
   };
 
   useEffect(() => {

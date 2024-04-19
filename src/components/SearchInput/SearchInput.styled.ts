@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import SearchIconSVG from "../svg/SearchIconSVG";
-import Input from "../Input";
+
+import Input from "../../ui/Input";
+import SearchIconSVG from "../../ui/svg/SearchIconSVG";
 
 export const StyledInput = styled(Input)`
   &:focus-within {

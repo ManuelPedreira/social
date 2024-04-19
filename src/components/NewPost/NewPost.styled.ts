@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import ProfileIcon from "../ProfileIcon";
-import Button from "../Button";
-import TextArea from "../TextArea";
-import SpinerSVG from "../svg/SpinnerSVG";
+import Button from "../../ui/Button";
+import TextArea from "../../ui/TextArea";
 import { getColorPalette, getCountColor } from "./NewPost.utils";
+import SpinerSVG from "../../ui/svg/SpinnerSVG";
 
 export const NewPostContainer = styled.label`
   display: flex;

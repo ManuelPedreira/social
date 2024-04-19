@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Post, RequestStatus } from "../postTypes";
 import { postNewPost } from "../postCalls";
+import useToast from "../../providers/ToastContext/useToast";
 
 const useNewPost = (
   setLocalPosts: React.Dispatch<React.SetStateAction<Post[]>>
@@ -8,6 +9,8 @@ const useNewPost = (
   const [newPostText, setNewPostText] = useState<string>("");
   const [newPostRequestStatus, setNewPostRequestStatus] =
     useState<RequestStatus>(RequestStatus.IDLE);
+
+  const { createToast } = useToast();
 
   const sendNewPost = (newPostText: string) => {
     setNewPostRequestStatus(RequestStatus.LOADING);
@@ -26,9 +29,11 @@ const useNewPost = (
         ]);
         setNewPostText("");
         setNewPostRequestStatus(RequestStatus.IDLE);
+        createToast({ text: "Post Sent!" });
       })
-      .catch(() => {
+      .catch((e) => {
         setNewPostRequestStatus(RequestStatus.ERROR);
+        createToast({ text: e.message, type: "ERROR", timeOut: 10000 });
       });
   };
 
