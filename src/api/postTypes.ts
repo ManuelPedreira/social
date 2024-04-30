@@ -10,6 +10,7 @@ export type Post = {
   id?: number;
   title: string;
   body: string;
+  user?: User;
 };
 
 export type Comment = {
@@ -57,12 +58,12 @@ export type Company = {
   ERROR: Symbol(),
 }); */
 
-export enum RequestStatus {
+/* export enum RequestStatus {
   IDLE,
   OK,
   LOADING,
   ERROR,
-}
+} */
 
 export type Pagination = {
   _page?: number;

@@ -10,28 +10,28 @@ import {
   VerticalDividerBar,
   StyledSpinner,
 } from "./NewPost.styled";
-import { RequestStatus } from "../../api/postTypes";
 import { useState } from "react";
+import useNewPost from "../../api/hooks/useNewPost";
+import useToast from "../../providers/ToastContext/useToast";
 
-type NewPostProps = {
-  postMessage: string;
-  onChangePostMessage: React.Dispatch<React.SetStateAction<string>>;
-  status: RequestStatus;
-  onSendPost: (text: string) => void;
-  charsLimit: number;
-};
-
-const NewPost = ({
-  postMessage,
-  onChangePostMessage,
-  status,
-  onSendPost,
-  charsLimit,
-}: NewPostProps) => {
+const NewPost = ({ charsLimit }: { charsLimit: number }) => {
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
+  const [postMessage, setPostMessage] = useState<string>("");
+  const { sendPost, isPending, isError } = useNewPost();
+  const { createToast } = useToast();
+
   const charsLeft = charsLimit - postMessage.length;
 
   const isExtendedView = isInputFocused || postMessage;
+
+  const onSendPost = () => {
+    sendPost({ userId: 3, title: "", body: postMessage })
+      .then(() => {
+        createToast({ text: "Post Sent!" });
+        setPostMessage("");
+      })
+      .catch((error) => createToast({ type: "ERROR", timeOut: 10000, text: error.message }));
+  };
 
   return (
     <NewPostContainer>
@@ -39,7 +39,7 @@ const NewPost = ({
       <MessageContainer>
         <StyledTextArea
           value={postMessage}
-          onChange={({ target }) => onChangePostMessage(target.value)}
+          onChange={({ target }) => setPostMessage(target.value)}
           placeholder="What's going on?!"
           maxLength={charsLimit}
           onFocusChange={(isInFocus) => setIsInputFocused(isInFocus)}
@@ -52,14 +52,8 @@ const NewPost = ({
               <VerticalDividerBar />
             </>
           ) : null}
-          <StyledButton
-            onClick={() => {
-              onSendPost(postMessage);
-            }}
-            disabled={!postMessage.length}
-            showError={status === RequestStatus.ERROR}
-          >
-            {status === RequestStatus.LOADING ? <StyledSpinner /> : "Send"}
+          <StyledButton onClick={onSendPost} disabled={!postMessage.length} showError={isError}>
+            {isPending ? <StyledSpinner /> : "Send"}
           </StyledButton>
         </BottomAreaContainer>
       </MessageContainer>

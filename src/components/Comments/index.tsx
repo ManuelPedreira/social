@@ -6,6 +6,8 @@ const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
     return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
   };
 
+  console.log(commentsData);
+
   return (
     <CommentsContainer>
       {commentsData.map((commentData) => {
@@ -14,12 +16,7 @@ const Comments = ({ commentsData }: { commentsData: Comment[] }) => {
         const account = formatText(String(username).split(".")[0]);
 
         return (
-          <StyledCompactPost
-            key={id}
-            account={`@${account}`}
-            name={name}
-            text={formatText(body)}
-          />
+          <StyledCompactPost key={id} account={`@${account}`} name={name} text={formatText(body)} />
         );
       })}
     </CommentsContainer>

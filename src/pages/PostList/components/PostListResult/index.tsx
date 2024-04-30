@@ -1,28 +1,53 @@
 import { Link } from "react-router-dom";
-import { Post, RequestStatus, User } from "../../../../api/postTypes";
+import { Pagination, Post } from "../../../../api/postTypes";
 import ErrorPlaceholder from "../../../../components/ErrorPlaceholder";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
-import {
-  CenterElementContainer,
-  StyledCompactPost,
-} from "./PostListResult.styled";
+import { CenterElementContainer, StyledCompactPost } from "./PostListResult.styled";
+import usePostList from "../../../../api/hooks/usePostList";
+import useUserList from "../../../../api/hooks/useUserList";
+import { includesInsensitive } from "../../../../utils";
 
 type PostListResultProps = {
-  postsData: Post[];
-  usersData: User[];
-  requestStatus: RequestStatus;
+  filter: string;
+  pagination: Pagination;
 };
 
-const PostListResult = ({
-  postsData,
-  usersData,
-  requestStatus,
-}: PostListResultProps) => {
-  if (
-    requestStatus === RequestStatus.IDLE ||
-    requestStatus === RequestStatus.LOADING
-  ) {
-    //if ([RequestStatus.IDLE, RequestStatus.LOADING].includes(requestStatus)) {
+const PostListResult = ({ pagination, filter }: PostListResultProps) => {
+  const {
+    postList,
+    isPending: isPostListPending,
+    isError: isPostListError,
+  } = usePostList(pagination);
+  const {
+    userList,
+    isPending: isUserListPending,
+    isError: isUserListError,
+  } = useUserList(postList?.map(({ userId }) => userId));
+
+  const getPostUserResults = () => {
+    const postWithUsers = postList?.map((post) => {
+      return {
+        ...post,
+        user: userList?.find(({ id }) => id === post.userId),
+      };
+    });
+
+    return (filter ? getFilteredPost(postWithUsers) : postWithUsers) || [];
+  };
+
+  const getFilteredPost = (postWithUsers?: Post[]) => {
+    if (!postWithUsers) return [];
+
+    return postWithUsers.filter((post) => {
+      const { user, body } = post;
+      const nameFilter = user && includesInsensitive(user.name, filter);
+      const usernameFilter = user && includesInsensitive(user.username, filter);
+      const bodyFilter = includesInsensitive(body, filter);
+      return nameFilter || usernameFilter || bodyFilter;
+    });
+  };
+
+  if (isPostListPending || isUserListPending) {
     return (
       <CenterElementContainer>
         <LoadingSpinner />
@@ -30,7 +55,7 @@ const PostListResult = ({
     );
   }
 
-  if (requestStatus === RequestStatus.ERROR) {
+  if (isPostListError || isUserListError) {
     return (
       <CenterElementContainer>
         <ErrorPlaceholder />
@@ -38,9 +63,9 @@ const PostListResult = ({
     );
   }
 
-  return postsData.map((postData) => {
-    const userData = usersData.find(({ id }) => id === postData.userId);
-    const { id, body } = postData;
+  return getPostUserResults().map((post) => {
+    const userData = userList?.find(({ id }) => id === post.userId);
+    const { id, body } = post;
 
     return (
       <Link key={id} to={`post/${id}`} relative="path">
