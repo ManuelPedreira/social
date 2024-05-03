@@ -13,13 +13,13 @@ const PostDetail = () => {
   const navigate = useNavigate();
   const { postId } = useParams();
 
-  const { post, isPending: isPostPending, isError: isPostError } = usePost(Number(postId));
+  const { post, isPending: isPostPending, isError: isPostError } = usePost(postId);
   const { user, isPending: isUserPending, isError: isUserError } = useUser(post?.userId);
   const {
     comments,
     isPending: isCommentsPending,
     isError: isCommentsError,
-  } = usePostComments(Number(postId));
+  } = usePostComments(postId);
 
   if (isPostPending || isUserPending || isCommentsPending) {
     return (

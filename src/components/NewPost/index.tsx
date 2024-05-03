@@ -26,7 +26,14 @@ const NewPost = ({ charsLimit }: { charsLimit: number }) => {
   const isExtendedView = isInputFocused || postMessageInputValue;
 
   const onSendPost = () => {
-    sendPost({ userId: 1, title: "", body: postMessageInputValue })
+    sendPost({
+      userId: "663359a2100837edcc68548e",
+      title: postMessageInputValue.substring(
+        0,
+        postMessageInputValue.length > 20 ? 20 : postMessageInputValue.length
+      ),
+      body: postMessageInputValue,
+    })
       .then(() => {
         createToast({ text: "Post Sent!" });
         setPostMessageInputValue("");

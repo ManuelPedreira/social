@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUsersByIds } from "../postCalls";
 
-const useUserList = (userIds?: number[]) => {
+const useUserList = (userIds?: string[]) => {
   const reducedUserIds = [...new Set(userIds)];
 
   const { data, isPending, isError } = useQuery({

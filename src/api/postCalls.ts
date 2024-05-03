@@ -12,15 +12,15 @@ export const getPaginatedPosts = (pagination?: Pagination) => {
   return axios.get<Post[]>(`${BASE_URL}/posts`, { params: pagination }).then(({ data }) => data);
 };
 
-export const getPostById = (postId: number) => {
+export const getPostById = (postId: string) => {
   return axios.get<Post>(`${BASE_URL}/posts/${postId}`).then(({ data }) => data);
 };
 
-export const getUserById = (userId: number) => {
+export const getUserById = (userId: string) => {
   return axios.get<User>(`${BASE_URL}/users/${userId}`).then(({ data }) => data);
 };
 
-export const getUsersByIds = (userIds: number[]) => {
+export const getUsersByIds = (userIds: string[]) => {
   const uniqueUserIds = [...new Set(userIds)];
 
   return axios
@@ -28,8 +28,8 @@ export const getUsersByIds = (userIds: number[]) => {
     .then(({ data }) => data);
 };
 
-export const getCommentsByPostId = (postId: number) => {
-  return axios.get<Comment[]>(`${BASE_URL}/post/${postId}/comments`).then(({ data }) => data);
+export const getCommentsByPostId = (postId: string) => {
+  return axios.get<Comment[]>(`${BASE_URL}/posts/${postId}/comments`).then(({ data }) => data);
 };
 
 export const postNewPost = (newPost: Post) => {

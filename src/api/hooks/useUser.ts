@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUserById } from "../postCalls";
 
-const useUser = (userId?: number) => {
+const useUser = (userId?: string) => {
   const { data, isPending, isError } = useQuery({
     queryKey: ["user", userId],
     queryFn: () => getUserById(userId!),

@@ -21,7 +21,7 @@ const useNewPost = () => {
       (previusPostList?: Post[]) => [
         {
           ...newPost,
-          id: Date.now(),
+          id: String(Date.now()),
         },
         ...(previusPostList || []),
       ]

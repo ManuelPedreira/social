@@ -6,23 +6,23 @@
 // *Use types instead of interfaces
 
 export type Post = {
-  userId: number;
-  id?: number;
+  userId: string;
+  id?: string;
   title: string;
   body: string;
   user?: User;
 };
 
 export type Comment = {
-  postId: number;
-  id: number;
+  postId: string;
+  id: string;
   name: string;
   email: string;
   body: string;
 };
 
 export type User = {
-  id: number;
+  id: string;
   name: string;
   username: string;
   email: string;
