@@ -5,6 +5,7 @@ import ThemeModeContextProvider from "./providers/ThemeModeContext";
 import CustomThemeProvider from "./providers/CustomTheme";
 import ToastContextProvider from "./providers/ToastContext";
 import QuerryProvider from "./providers/QuerryProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   const router = createBrowserRouter(routes);
@@ -18,6 +19,7 @@ function App() {
             <RouterProvider router={router} />
           </ToastContextProvider>
         </CustomThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QuerryProvider>
     </ThemeModeContextProvider>
   );

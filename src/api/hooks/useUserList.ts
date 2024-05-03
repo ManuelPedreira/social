@@ -1,22 +1,14 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getUsersByIds } from "../postCalls";
 
 const useUserList = (userIds?: number[]) => {
+  const reducedUserIds = [...new Set(userIds)];
+
   const { data, isPending, isError } = useQuery({
-    queryKey: ["userList", userIds],
+    queryKey: ["userList", reducedUserIds],
     queryFn: () => getUsersByIds(userIds!),
     enabled: userIds !== undefined,
   });
-
-  const queryClient = useQueryClient();
-  if (userIds && userIds.length > 0) {
-    const nextUserId = [userIds[userIds.length - 1] + 1];
-
-    queryClient.prefetchQuery({
-      queryKey: ["user", nextUserId],
-      queryFn: () => getUsersByIds(nextUserId),
-    });
-  }
 
   return { userList: data, isPending, isError };
 };

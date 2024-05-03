@@ -13,24 +13,29 @@ import {
 import { useState } from "react";
 import useNewPost from "../../api/hooks/useNewPost";
 import useToast from "../../providers/ToastContext/useToast";
+import { AxiosError } from "axios";
 
 const NewPost = ({ charsLimit }: { charsLimit: number }) => {
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
-  const [postMessage, setPostMessage] = useState<string>("");
+  const [postMessageInputValue, setPostMessageInputValue] = useState<string>("");
   const { sendPost, isPending, isError } = useNewPost();
   const { createToast } = useToast();
 
-  const charsLeft = charsLimit - postMessage.length;
+  const charsLeft = charsLimit - postMessageInputValue.length;
 
-  const isExtendedView = isInputFocused || postMessage;
+  const isExtendedView = isInputFocused || postMessageInputValue;
 
   const onSendPost = () => {
-    sendPost({ userId: 3, title: "", body: postMessage })
+    sendPost({ userId: 1, title: "", body: postMessageInputValue })
       .then(() => {
         createToast({ text: "Post Sent!" });
-        setPostMessage("");
+        setPostMessageInputValue("");
       })
-      .catch((error) => createToast({ type: "ERROR", timeOut: 10000, text: error.message }));
+      .catch((error) => {
+        const text = error instanceof AxiosError ? error.message : "Something went wrong";
+        createToast({ type: "ERROR", timeOut: 10000, text });
+        console.error(error);
+      });
   };
 
   return (
@@ -38,8 +43,8 @@ const NewPost = ({ charsLimit }: { charsLimit: number }) => {
       <StyledIcon colorByText="Patricia Lebsack" />
       <MessageContainer>
         <StyledTextArea
-          value={postMessage}
-          onChange={({ target }) => setPostMessage(target.value)}
+          value={postMessageInputValue}
+          onChange={({ target }) => setPostMessageInputValue(target.value)}
           placeholder="What's going on?!"
           maxLength={charsLimit}
           onFocusChange={(isInFocus) => setIsInputFocused(isInFocus)}
@@ -52,7 +57,11 @@ const NewPost = ({ charsLimit }: { charsLimit: number }) => {
               <VerticalDividerBar />
             </>
           ) : null}
-          <StyledButton onClick={onSendPost} disabled={!postMessage.length} showError={isError}>
+          <StyledButton
+            onClick={onSendPost}
+            disabled={!postMessageInputValue.length}
+            showError={isError}
+          >
             {isPending ? <StyledSpinner /> : "Send"}
           </StyledButton>
         </BottomAreaContainer>
