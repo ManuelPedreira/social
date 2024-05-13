@@ -65,7 +65,7 @@ const PostListResult = ({ pagination, filter }: PostListResultProps) => {
 
   return getPostUserResults().map((post) => {
     const userData = userList?.find(({ id }) => id === post.userId);
-    const { id, body } = post;
+    const { id, body, coments_count } = post;
 
     return (
       <Link key={id} to={`post/${id}`} relative="path">
@@ -73,6 +73,7 @@ const PostListResult = ({ pagination, filter }: PostListResultProps) => {
           account={`@${userData?.username}`}
           name={userData?.name || ""}
           text={body}
+          commentsCount={coments_count}
         />
       </Link>
     );

@@ -28,3 +28,20 @@ export const StyledProfileIcon = styled(ProfileIcon)`
   border-radius: 20px;
   flex-shrink: 0;
 `;
+
+export const InfoContainer = styled.div`
+  padding-top: 0.5rem;
+  display: flex;
+
+  * {
+    color: ${({ theme }) => theme.color.primary.light};
+  }
+`;
+
+export const CommentsCounter = styled.div`
+  width: 25%;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;

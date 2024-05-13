@@ -11,6 +11,7 @@ export type Post = {
   title: string;
   body: string;
   user?: User;
+  coments_count?: number;
 };
 
 export type Comment = {
