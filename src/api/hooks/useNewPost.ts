@@ -1,43 +1,35 @@
-import { useState } from "react";
-import { Post, RequestStatus } from "../postTypes";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postNewPost } from "../postCalls";
-import useToast from "../../providers/ToastContext/useToast";
+import { Post } from "../postTypes";
 
-const useNewPost = (
-  setLocalPosts: React.Dispatch<React.SetStateAction<Post[]>>
-) => {
-  const [newPostText, setNewPostText] = useState<string>("");
-  const [newPostRequestStatus, setNewPostRequestStatus] =
-    useState<RequestStatus>(RequestStatus.IDLE);
+const useNewPost = () => {
+  const queryClient = useQueryClient();
 
-  const { createToast } = useToast();
+  const { mutateAsync, isPending, isError } = useMutation({
+    mutationFn: postNewPost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["postList"] });
+    },
+  });
 
-  const sendNewPost = (newPostText: string) => {
-    setNewPostRequestStatus(RequestStatus.LOADING);
-
-    const newPost: Post = {
-      userId: 4,
-      title: newPostText,
-      body: newPostText,
-    };
-
-    postNewPost(newPost)
-      .then((post) => {
-        setLocalPosts((currentLocalPosts) => [
-          ...currentLocalPosts,
-          { ...post, id: Number(new Date()) }, //falsear Id, no usar en entorno real
-        ]);
-        setNewPostText("");
-        setNewPostRequestStatus(RequestStatus.IDLE);
-        createToast({ text: "Post Sent!" });
-      })
-      .catch((e) => {
-        setNewPostRequestStatus(RequestStatus.ERROR);
-        createToast({ text: e.message, type: "ERROR", timeOut: 10000 });
-      });
+  const sendPost = (newPost: Post) => {
+    queryClient.setQueriesData(
+      {
+        queryKey: ["postList"],
+        exact: false,
+      },
+      (previusPostList?: Post[]) => [
+        {
+          ...newPost,
+          id: String(Date.now()),
+        },
+        ...(previusPostList || []),
+      ]
+    );
+    return mutateAsync(newPost);
   };
 
-  return { newPostText, setNewPostText, newPostRequestStatus, sendNewPost };
+  return { sendPost, isPending, isError };
 };
 
 export default useNewPost;

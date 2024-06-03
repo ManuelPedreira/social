@@ -5,6 +5,7 @@ export const CompactPostContainer = styled.div`
   display: flex;
   text-align: left;
   gap: 0.5rem;
+  background-color: ${({ theme }) => theme.color.background.main};
 `;
 
 export const UserContainer = styled.div`
@@ -26,4 +27,21 @@ export const StyledProfileIcon = styled(ProfileIcon)`
   height: 40px;
   border-radius: 20px;
   flex-shrink: 0;
+`;
+
+export const InfoContainer = styled.div`
+  padding-top: 0.5rem;
+  display: flex;
+
+  * {
+    color: ${({ theme }) => theme.color.primary.light};
+  }
+`;
+
+export const CommentsCounter = styled.div`
+  width: 25%;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;

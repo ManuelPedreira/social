@@ -10,36 +10,48 @@ import {
   VerticalDividerBar,
   StyledSpinner,
 } from "./NewPost.styled";
-import { RequestStatus } from "../../api/postTypes";
 import { useState } from "react";
+import useNewPost from "../../api/hooks/useNewPost";
+import useToast from "../../providers/ToastContext/useToast";
+import { AxiosError } from "axios";
 
-type NewPostProps = {
-  postMessage: string;
-  onChangePostMessage: React.Dispatch<React.SetStateAction<string>>;
-  status: RequestStatus;
-  onSendPost: (text: string) => void;
-  charsLimit: number;
-};
-
-const NewPost = ({
-  postMessage,
-  onChangePostMessage,
-  status,
-  onSendPost,
-  charsLimit,
-}: NewPostProps) => {
+const NewPost = ({ charsLimit }: { charsLimit: number }) => {
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
-  const charsLeft = charsLimit - postMessage.length;
+  const [postMessageInputValue, setPostMessageInputValue] = useState<string>("");
+  const { sendPost, isPending, isError } = useNewPost();
+  const { createToast } = useToast();
 
-  const isExtendedView = isInputFocused || postMessage;
+  const charsLeft = charsLimit - postMessageInputValue.length;
+
+  const isExtendedView = isInputFocused || postMessageInputValue;
+
+  const onSendPost = () => {
+    sendPost({
+      userId: "663359a2100837edcc68548e",
+      title: postMessageInputValue.substring(
+        0,
+        postMessageInputValue.length > 20 ? 20 : postMessageInputValue.length
+      ),
+      body: postMessageInputValue,
+    })
+      .then(() => {
+        createToast({ text: "Post Sent!" });
+        setPostMessageInputValue("");
+      })
+      .catch((error) => {
+        const text = error instanceof AxiosError ? error.message : "Something went wrong";
+        createToast({ type: "ERROR", timeOut: 10000, text });
+        console.error(error);
+      });
+  };
 
   return (
     <NewPostContainer>
       <StyledIcon colorByText="Patricia Lebsack" />
       <MessageContainer>
         <StyledTextArea
-          value={postMessage}
-          onChange={({ target }) => onChangePostMessage(target.value)}
+          value={postMessageInputValue}
+          onChange={({ target }) => setPostMessageInputValue(target.value)}
           placeholder="What's going on?!"
           maxLength={charsLimit}
           onFocusChange={(isInFocus) => setIsInputFocused(isInFocus)}
@@ -53,13 +65,11 @@ const NewPost = ({
             </>
           ) : null}
           <StyledButton
-            onClick={() => {
-              onSendPost(postMessage);
-            }}
-            disabled={!postMessage.length}
-            showError={status === RequestStatus.ERROR}
+            onClick={onSendPost}
+            disabled={!postMessageInputValue.length}
+            showError={isError}
           >
-            {status === RequestStatus.LOADING ? <StyledSpinner /> : "Send"}
+            {isPending ? <StyledSpinner /> : "Send"}
           </StyledButton>
         </BottomAreaContainer>
       </MessageContainer>

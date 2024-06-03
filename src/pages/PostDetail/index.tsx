@@ -1,26 +1,27 @@
 import { useNavigate, useParams } from "react-router-dom";
-import usePostAndComments from "../../api/hooks/usePostAndComments";
-import { RequestStatus } from "../../api/postTypes";
 import DetailedPostHeader from "./components/DetailedPostHeader";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorPlaceholder from "../../components/ErrorPlaceholder";
-import {
-  CenterElementContainer,
-  PostDetailedContainer,
-} from "./PostDetail.styled";
+import { CenterElementContainer, PostDetailedContainer } from "./PostDetail.styled";
 import Comments from "../../components/Comments";
 import DetailedPost from "./components/DetailedPost";
+import usePost from "../../api/hooks/usePost";
+import useUser from "../../api/hooks/useUser";
+import usePostComments from "../../api/hooks/usePostComments";
 
 const PostDetail = () => {
   const navigate = useNavigate();
   const { postId } = useParams();
-  const { postData, userData, commentsData, overallRequestStatus } =
-    usePostAndComments(Number(postId));
 
-  if (
-    overallRequestStatus.includes(RequestStatus.IDLE) ||
-    overallRequestStatus.includes(RequestStatus.LOADING)
-  ) {
+  const { post, isPending: isPostPending, isError: isPostError } = usePost(postId);
+  const { user, isPending: isUserPending, isError: isUserError } = useUser(post?.userId);
+  const {
+    comments,
+    isPending: isCommentsPending,
+    isError: isCommentsError,
+  } = usePostComments(postId);
+
+  if (isPostPending || isUserPending || isCommentsPending) {
     return (
       <PostDetailedContainer>
         <DetailedPostHeader onClick={() => navigate("/")} />
@@ -31,7 +32,7 @@ const PostDetail = () => {
     );
   }
 
-  if (overallRequestStatus.includes(RequestStatus.ERROR)) {
+  if (isPostError || isUserError || isCommentsError) {
     return (
       <PostDetailedContainer>
         <DetailedPostHeader onClick={() => navigate("/")} />
@@ -46,11 +47,11 @@ const PostDetail = () => {
     <PostDetailedContainer>
       <DetailedPostHeader onClick={() => navigate("/")} />
       <DetailedPost
-        account={`@${userData?.username}`}
-        name={userData?.name || ""}
-        text={postData?.body || ""}
+        account={`@${user?.username}`}
+        name={user?.name || ""}
+        text={post?.body || ""}
       />
-      <Comments commentsData={commentsData} />
+      <Comments commentsData={comments || []} />
     </PostDetailedContainer>
   );
 };
