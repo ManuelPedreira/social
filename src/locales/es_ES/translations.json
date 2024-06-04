@@ -1,0 +1,12 @@
+{
+  "language-es_ES": "Español",
+  "language-en_US": "Ingles",
+  "new-post-input-placeholder": "¡¿Qué está pasando?!",
+  "new-post-button-send": "Enviar",
+  "new-post-chars-left_zero": "No te quedan caracteres",
+  "new-post-chars-left_one": "Te queda {{count}} caracter",
+  "new-post-chars-left_other": "Te quedan {{count}} caracteres",
+  "search-input-placeholder": "Buscar",
+  "pagination-button-all": "...",
+  "toast-post-send": "¡Post Enviado!"
+}

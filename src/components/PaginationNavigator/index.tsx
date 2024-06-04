@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Pagination } from "../../api/postTypes";
 import ArrorSVG from "../../ui/svg/ArrorSVG";
 import {
@@ -12,11 +13,9 @@ type PagesNavigatorProps = {
   className?: string;
 };
 
-const PaginationNavigator = ({
-  pagination,
-  setPagination,
-  className,
-}: PagesNavigatorProps) => {
+const PaginationNavigator = ({ pagination, setPagination, className }: PagesNavigatorProps) => {
+  const { t } = useTranslation();
+
   const setPage = (newPage: number) => {
     setPagination((currentValue) => {
       if (!currentValue._limit) return {};
@@ -67,9 +66,7 @@ const PaginationNavigator = ({
         onClick={() => {
           setPage(pagination._page ? pagination._page - 1 : 1);
         }}
-        disabled={
-          !pagination._limit || !pagination._page || pagination._page <= 1
-        }
+        disabled={!pagination._limit || !pagination._page || pagination._page <= 1}
       >
         <ArrorSVG direction="left" />
       </StyledButton>
@@ -86,7 +83,7 @@ const PaginationNavigator = ({
         <ArrorSVG direction="right" />
       </StyledButton>
       <StyledButton onClick={setNextLimit}>
-        <span>{pagination._limit ? pagination._limit : "All"}</span>
+        <span>{pagination._limit ? pagination._limit : t("pagination-button-all")}</span>
       </StyledButton>
     </PaginationNavigatorContainer>
   );
