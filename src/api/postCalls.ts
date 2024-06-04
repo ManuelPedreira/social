@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Comment, Pagination, Post, User } from "./postTypes";
 
-const BASE_URL = "http://localhost:3000";
-//const BASE_URL = "https://jsonplaceholder.typicode.com";
+//const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://jsonplaceholder.typicode.com";
 
 export const getAllPosts = () => {
   return getPaginatedPosts();

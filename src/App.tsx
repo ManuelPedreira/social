@@ -6,6 +6,10 @@ import CustomThemeProvider from "./providers/CustomTheme";
 import ToastContextProvider from "./providers/ToastContext";
 import QuerryProvider from "./providers/QuerryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import LanguageSelector from "./components/LanguageSelector";
+import initI18n from "./i18nConfig";
+
+initI18n();
 
 function App() {
   const router = createBrowserRouter(routes);
@@ -16,6 +20,7 @@ function App() {
         <CustomThemeProvider>
           <ToastContextProvider>
             <GlobalStyles />
+            <LanguageSelector />
             <RouterProvider router={router} />
           </ToastContextProvider>
         </CustomThemeProvider>

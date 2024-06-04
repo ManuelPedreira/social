@@ -14,12 +14,14 @@ import { useState } from "react";
 import useNewPost from "../../api/hooks/useNewPost";
 import useToast from "../../providers/ToastContext/useToast";
 import { AxiosError } from "axios";
+import { useTranslation } from "react-i18next";
 
 const NewPost = ({ charsLimit }: { charsLimit: number }) => {
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
   const [postMessageInputValue, setPostMessageInputValue] = useState<string>("");
   const { sendPost, isPending, isError } = useNewPost();
   const { createToast } = useToast();
+  const { t } = useTranslation();
 
   const charsLeft = charsLimit - postMessageInputValue.length;
 
@@ -35,7 +37,7 @@ const NewPost = ({ charsLimit }: { charsLimit: number }) => {
       body: postMessageInputValue,
     })
       .then(() => {
-        createToast({ text: "Post Sent!" });
+        createToast({ text: t("toast-post-send") });
         setPostMessageInputValue("");
       })
       .catch((error) => {
@@ -52,7 +54,7 @@ const NewPost = ({ charsLimit }: { charsLimit: number }) => {
         <StyledTextArea
           value={postMessageInputValue}
           onChange={({ target }) => setPostMessageInputValue(target.value)}
-          placeholder="What's going on?!"
+          placeholder={t("new-post-input-placeholder")}
           maxLength={charsLimit}
           onFocusChange={(isInFocus) => setIsInputFocused(isInFocus)}
         />
@@ -60,7 +62,12 @@ const NewPost = ({ charsLimit }: { charsLimit: number }) => {
         <BottomAreaContainer>
           {isExtendedView ? (
             <>
-              <LimitCounter $charsCount={charsLeft}>{charsLeft}</LimitCounter>
+              <LimitCounter
+                title={t("new-post-chars-left", { count: charsLeft })}
+                $charsCount={charsLeft}
+              >
+                {charsLeft}
+              </LimitCounter>
               <VerticalDividerBar />
             </>
           ) : null}
@@ -69,7 +76,7 @@ const NewPost = ({ charsLimit }: { charsLimit: number }) => {
             disabled={!postMessageInputValue.length}
             showError={isError}
           >
-            {isPending ? <StyledSpinner /> : "Send"}
+            {isPending ? <StyledSpinner /> : t("new-post-button-send")}
           </StyledButton>
         </BottomAreaContainer>
       </MessageContainer>

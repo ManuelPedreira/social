@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Pagination } from "../../../../api/postTypes";
 import ThemeSwitch from "../../../../components/ThemeSwitch";
 import {
@@ -13,12 +14,9 @@ type PostListHeaderProps = {
   setPagination: React.Dispatch<React.SetStateAction<Pagination>>;
 };
 
-const PostListHeader = ({
-  filter,
-  setFilter,
-  pagination,
-  setPagination,
-}: PostListHeaderProps) => {
+const PostListHeader = ({ filter, setFilter, pagination, setPagination }: PostListHeaderProps) => {
+  const { t } = useTranslation();
+
   const getVisualizationMode = () => {
     if (pagination._limit) return PostListHeaderMode.PAGINATION;
     return PostListHeaderMode.SEARCH;
@@ -27,7 +25,7 @@ const PostListHeader = ({
   return (
     <PostListHeaderContainer>
       <StyledSearchInput
-        placeholder="Search"
+        placeholder={t("search-input-placeholder")}
         value={filter}
         onChange={({ target }) => {
           setFilter(target.value);

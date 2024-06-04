@@ -1,0 +1,12 @@
+{
+  "language-es_ES": "Spanish",
+  "language-en_US": "English",
+  "new-post-input-placeholder": "What's going on?!",
+  "new-post-button-send": "Send",
+  "new-post-chars-left_zero": "You have no characters left",
+  "new-post-chars-left_one": "You have {{count}} character left",
+  "new-post-chars-left_other": "You have {{count}} characters left",
+  "search-input-placeholder": "Search",
+  "pagination-button-all": "All",
+  "toast-post-send": "Post Sent!"
+}
